@@ -1,0 +1,18 @@
+# SemanticSearchGraph
+
+A graph organizing related triples
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `id`                                                                           | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `name`                                                                         | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `description`                                                                  | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `index_id`                                                                     | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `metadata`                                                                     | [Optional[models.SemanticSearchMetadata]](../models/semanticsearchmetadata.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `triple_count`                                                                 | *Optional[int]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `created_at`                                                                   | [date](https://docs.python.org/3/library/datetime.html#date-objects)           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `updated_at`                                                                   | [date](https://docs.python.org/3/library/datetime.html#date-objects)           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `similarity`                                                                   | *Optional[float]*                                                              | :heavy_minus_sign:                                                             | Similarity score (0-1)                                                         |

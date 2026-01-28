@@ -1,0 +1,163 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/api/entities"]["post"]
+    update:
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.entities.create()
+      before: sdk.Entities.createEntity()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/indexes"]["get"]
+    update:
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.indexes.list()
+      before: sdk.Indexes.listIndexes()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/entities/{id}"]["delete"]
+    update:
+      x-speakeasy-name-override: delete
+    x-speakeasy-metadata:
+      after: sdk.entities.delete()
+      before: sdk.Entities.deleteEntity()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/graphs/{id}"]["get"]
+    update:
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.graphs.get()
+      before: sdk.Graphs.getGraph()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/search"]["get"]
+    update:
+      x-speakeasy-name-override: semanticGet
+    x-speakeasy-metadata:
+      after: sdk.search.semanticGet()
+      before: sdk.Search.semanticSearchGet()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/triples"]["delete"]
+    update:
+      x-speakeasy-name-override: delete
+    x-speakeasy-metadata:
+      after: sdk.triples.delete()
+      before: sdk.Triples.deleteTriples()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/entities/{id}"]["put"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.entities.update()
+      before: sdk.Entities.updateEntity()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/triples"]["put"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.triples.update()
+      before: sdk.Triples.updateTriple()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/graphs/{id}"]["delete"]
+    update:
+      x-speakeasy-name-override: delete
+    x-speakeasy-metadata:
+      after: sdk.graphs.delete()
+      before: sdk.Graphs.deleteGraph()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/graphs"]["get"]
+    update:
+      x-speakeasy-name-override: listAll
+    x-speakeasy-metadata:
+      after: sdk.graphs.listAll()
+      before: sdk.Graphs.listGraphs()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/indexes"]["post"]
+    update:
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.indexes.create()
+      before: sdk.Indexes.createIndex()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/entities/{id}"]["get"]
+    update:
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.entities.get()
+      before: sdk.Entities.getEntity()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/entities"]["get"]
+    update:
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.entities.list()
+      before: sdk.Entities.listEntities()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/triples"]["get"]
+    update:
+      x-speakeasy-name-override: query
+    x-speakeasy-metadata:
+      after: sdk.triples.query()
+      before: sdk.Triples.queryTriples()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/graphs"]["post"]
+    update:
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.graphs.create()
+      before: sdk.Graphs.createGraph()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/triples"]["post"]
+    update:
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.triples.create()
+      before: sdk.Triples.createTriples()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/search"]["post"]
+    update:
+      x-speakeasy-name-override: semantic
+    x-speakeasy-metadata:
+      after: sdk.search.semantic()
+      before: sdk.Search.semanticSearch()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name

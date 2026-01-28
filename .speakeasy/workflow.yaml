@@ -1,0 +1,21 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Neode API:
+        inputs:
+            - location: ../app/static/openapi.json
+        overlays:
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        output: .speakeasy/out.openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/neode/neode-python/neode-api
+targets:
+    neode:
+        target: python
+        source: Neode API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/neode/neode-python/neode-api-code-samples
+            labelOverride:
+                fixedValue: Python (SDK)
+            blocking: false

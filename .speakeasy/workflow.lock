@@ -1,0 +1,39 @@
+speakeasyVersion: 1.700.1
+sources:
+    Neode API:
+        sourceNamespace: neode-api
+        sourceRevisionDigest: sha256:ec16bf814138e41fe9f91919db79a67383b31981663128275b9cc1faa06f393f
+        sourceBlobDigest: sha256:63e6bd0085c06895656940b33101d85e18f8dfe6a9813e63404cc41ec3d4ff18
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    neode:
+        source: Neode API
+        sourceNamespace: neode-api
+        sourceRevisionDigest: sha256:ec16bf814138e41fe9f91919db79a67383b31981663128275b9cc1faa06f393f
+        sourceBlobDigest: sha256:63e6bd0085c06895656940b33101d85e18f8dfe6a9813e63404cc41ec3d4ff18
+        codeSamplesNamespace: neode-api-code-samples
+        codeSamplesRevisionDigest: sha256:114debee3999d579dc9730589154a0a0cf1803ca5c82c031ba7b59865547643e
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Neode API:
+            inputs:
+                - location: ../app/static/openapi.json
+            overlays:
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/neode/neode-python/neode-api
+    targets:
+        neode:
+            target: python
+            source: Neode API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/neode/neode-python/neode-api-code-samples
+                labelOverride:
+                    fixedValue: Python (SDK)
+                blocking: false
