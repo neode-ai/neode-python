@@ -31,6 +31,8 @@ paths:
       summary: "Query triples"
       description: "Retrieve triples with various filtering options. Use this to query your knowledge graph."
       operationId: "queryTriples"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "query"
       parameters:
         - name: "search"
           in: "query"
@@ -65,6 +67,13 @@ paths:
           description: "Filter by predicate (can be repeated for multiple predicates)"
           schema:
             type: "string"
+        - name: "offset"
+          in: "query"
+          description: "Number of results to skip for pagination"
+          schema:
+            type: "integer"
+            default: 0
+            minimum: 0
         - name: "limit"
           in: "query"
           description: "Maximum number of results"
@@ -89,7 +98,6 @@ paths:
                     type: "integer"
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
-      x-speakeasy-name-override: "query"
     post:
       tags:
         - "Triples"
@@ -275,6 +283,8 @@ paths:
       summary: "List entities"
       description: "Search and list entities. Entities are automatically created when triples are stored."
       operationId: "listEntities"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "list"
       parameters:
         - name: "search"
           in: "query"
@@ -293,6 +303,13 @@ paths:
           schema:
             type: "boolean"
             default: false
+        - name: "offset"
+          in: "query"
+          description: "Number of results to skip for pagination"
+          schema:
+            type: "integer"
+            default: 0
+            minimum: 0
         - name: "limit"
           in: "query"
           description: "Maximum number of results"
@@ -316,7 +333,6 @@ paths:
                     type: "integer"
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
-      x-speakeasy-name-override: "list"
     post:
       tags:
         - "Entities"
@@ -421,13 +437,7 @@ paths:
           description: "Successfully deleted"
           content:
             "application/json":
-              schema:
-                type: "object"
-                properties:
-                  "success":
-                    type: "boolean"
-                  "message":
-                    type: "string"
+              schema: {"$ref": "#/components/schemas/SuccessMessage"}
         "404": {"$ref": "#/components/responses/NotFound"}
         "500": {"$ref": "#/components/responses/InternalError"}
       x-speakeasy-name-override: "delete"
@@ -438,12 +448,21 @@ paths:
       summary: "List graphs"
       description: "List all graphs with triple counts"
       operationId: "listGraphs"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "listAll"
       parameters:
         - name: "search"
           in: "query"
           description: "Search by name or description"
           schema:
             type: "string"
+        - name: "offset"
+          in: "query"
+          description: "Number of results to skip for pagination"
+          schema:
+            type: "integer"
+            default: 0
+            minimum: 0
         - name: "limit"
           in: "query"
           description: "Maximum number of results"
@@ -467,7 +486,6 @@ paths:
                     type: "integer"
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
-      x-speakeasy-name-override: "listAll"
     post:
       tags:
         - "Graphs"
@@ -545,13 +563,7 @@ paths:
           description: "Successfully deleted"
           content:
             "application/json":
-              schema:
-                type: "object"
-                properties:
-                  "success":
-                    type: "boolean"
-                  "message":
-                    type: "string"
+              schema: {"$ref": "#/components/schemas/SuccessMessage"}
         "404": {"$ref": "#/components/responses/NotFound"}
         "500": {"$ref": "#/components/responses/InternalError"}
       x-speakeasy-name-override: "delete"
@@ -562,12 +574,21 @@ paths:
       summary: "List indexes"
       description: "List all indexes with entity counts"
       operationId: "listIndexes"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "list"
       parameters:
         - name: "search"
           in: "query"
           description: "Search by name or description"
           schema:
             type: "string"
+        - name: "offset"
+          in: "query"
+          description: "Number of results to skip for pagination"
+          schema:
+            type: "integer"
+            default: 0
+            minimum: 0
         - name: "limit"
           in: "query"
           description: "Maximum number of results"
@@ -591,7 +612,6 @@ paths:
                     type: "integer"
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
-      x-speakeasy-name-override: "list"
     post:
       tags:
         - "Indexes"
@@ -624,6 +644,8 @@ paths:
       summary: "Semantic search (GET)"
       description: "Search across entities, triples, and graphs using natural language. Uses vector embeddings for semantic similarity matching."
       operationId: "semanticSearchGet"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data.entities"}}
+      x-speakeasy-name-override: "semanticGet"
       parameters:
         - name: "q"
           in: "query"
@@ -643,6 +665,13 @@ paths:
           schema:
             type: "string"
             format: "uuid"
+        - name: "offset"
+          in: "query"
+          description: "Number of results to skip for pagination"
+          schema:
+            type: "integer"
+            default: 0
+            minimum: 0
         - name: "limit"
           in: "query"
           description: "Maximum results per type (default 20, max 100)"
@@ -681,7 +710,6 @@ paths:
                     type: "object"
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
-      x-speakeasy-name-override: "semanticGet"
     post:
       tags:
         - "Search"
@@ -1085,6 +1113,14 @@ components:
         "error":
           type: "string"
         "details":
+          type: "string"
+    "SuccessMessage":
+      type: "object"
+      description: "A simple success response with a message"
+      properties:
+        "success":
+          type: "boolean"
+        "message":
           type: "string"
   responses:
     "BadRequest":

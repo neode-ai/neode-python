@@ -5,13 +5,15 @@ from .index import Index, IndexTypedDict
 from neode.types import BaseModel, UNSET_SENTINEL
 from neode.utils import FieldMetadata, QueryParamMetadata
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import Awaitable, Callable, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ListIndexesRequestTypedDict(TypedDict):
     search: NotRequired[str]
     r"""Search by name or description"""
+    offset: NotRequired[int]
+    r"""Number of results to skip for pagination"""
     limit: NotRequired[int]
     r"""Maximum number of results"""
 
@@ -23,6 +25,12 @@ class ListIndexesRequest(BaseModel):
     ] = None
     r"""Search by name or description"""
 
+    offset: Annotated[
+        Optional[int],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = 0
+    r"""Number of results to skip for pagination"""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -31,7 +39,7 @@ class ListIndexesRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["search", "limit"])
+        optional_fields = set(["search", "offset", "limit"])
         serialized = handler(self)
         m = {}
 
@@ -46,7 +54,7 @@ class ListIndexesRequest(BaseModel):
         return m
 
 
-class ListIndexesResponseTypedDict(TypedDict):
+class ListIndexesResponseBodyTypedDict(TypedDict):
     r"""Successful response"""
 
     success: NotRequired[bool]
@@ -54,7 +62,7 @@ class ListIndexesResponseTypedDict(TypedDict):
     count: NotRequired[int]
 
 
-class ListIndexesResponse(BaseModel):
+class ListIndexesResponseBody(BaseModel):
     r"""Successful response"""
 
     success: Optional[bool] = None
@@ -78,3 +86,16 @@ class ListIndexesResponse(BaseModel):
                     m[k] = val
 
         return m
+
+
+class ListIndexesResponseTypedDict(TypedDict):
+    result: ListIndexesResponseBodyTypedDict
+
+
+class ListIndexesResponse(BaseModel):
+    next: Union[
+        Callable[[], Optional[ListIndexesResponse]],
+        Callable[[], Awaitable[Optional[ListIndexesResponse]]],
+    ]
+
+    result: ListIndexesResponseBody

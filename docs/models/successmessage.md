@@ -1,6 +1,6 @@
-# DeleteEntityResponse
+# SuccessMessage
 
-Successfully deleted
+A simple success response with a message
 
 
 ## Fields

@@ -5,7 +5,7 @@ from .entity import Entity, EntityTypedDict
 from neode.types import BaseModel, UNSET_SENTINEL
 from neode.utils import FieldMetadata, QueryParamMetadata
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import Awaitable, Callable, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -16,6 +16,8 @@ class ListEntitiesRequestTypedDict(TypedDict):
     r"""Filter by index ID"""
     exact: NotRequired[bool]
     r"""Use exact name matching instead of fuzzy search"""
+    offset: NotRequired[int]
+    r"""Number of results to skip for pagination"""
     limit: NotRequired[int]
     r"""Maximum number of results"""
 
@@ -39,6 +41,12 @@ class ListEntitiesRequest(BaseModel):
     ] = False
     r"""Use exact name matching instead of fuzzy search"""
 
+    offset: Annotated[
+        Optional[int],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = 0
+    r"""Number of results to skip for pagination"""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -47,7 +55,7 @@ class ListEntitiesRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["search", "index_id", "exact", "limit"])
+        optional_fields = set(["search", "index_id", "exact", "offset", "limit"])
         serialized = handler(self)
         m = {}
 
@@ -62,7 +70,7 @@ class ListEntitiesRequest(BaseModel):
         return m
 
 
-class ListEntitiesResponseTypedDict(TypedDict):
+class ListEntitiesResponseBodyTypedDict(TypedDict):
     r"""Successful response"""
 
     success: NotRequired[bool]
@@ -70,7 +78,7 @@ class ListEntitiesResponseTypedDict(TypedDict):
     count: NotRequired[int]
 
 
-class ListEntitiesResponse(BaseModel):
+class ListEntitiesResponseBody(BaseModel):
     r"""Successful response"""
 
     success: Optional[bool] = None
@@ -94,3 +102,16 @@ class ListEntitiesResponse(BaseModel):
                     m[k] = val
 
         return m
+
+
+class ListEntitiesResponseTypedDict(TypedDict):
+    result: ListEntitiesResponseBodyTypedDict
+
+
+class ListEntitiesResponse(BaseModel):
+    next: Union[
+        Callable[[], Optional[ListEntitiesResponse]],
+        Callable[[], Awaitable[Optional[ListEntitiesResponse]]],
+    ]
+
+    result: ListEntitiesResponseBody

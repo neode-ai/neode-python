@@ -25,10 +25,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.search.semantic_get(q="<value>", types="entities,triples", limit=20, threshold=0.3)
+    res = n_client.search.semantic_get(q="<value>", types="entities,triples", offset=0, limit=20, threshold=0.3)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -39,6 +41,7 @@ with Neode(
 | `q`                                                                 | *str*                                                               | :heavy_check_mark:                                                  | Natural language search query                                       |
 | `types`                                                             | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Comma-separated types to search (entities,triples,graphs)           |
 | `index_id`                                                          | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter results to a specific index                                  |
+| `offset`                                                            | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Number of results to skip for pagination                            |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Maximum results per type (default 20, max 100)                      |
 | `threshold`                                                         | *Optional[float]*                                                   | :heavy_minus_sign:                                                  | Minimum similarity score 0-1 (default 0.3)                          |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |

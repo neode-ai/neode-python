@@ -9,10 +9,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 ```
 
 </br>
@@ -31,10 +33,12 @@ async def main():
         bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
     ) as n_client:
 
-        res = await n_client.triples.query_async(limit=50)
+        res = await n_client.triples.query_async(offset=0, limit=50)
 
-        # Handle response
-        print(res)
+        while res is not None:
+            # Handle items
+
+            res = res.next()
 
 asyncio.run(main())
 ```

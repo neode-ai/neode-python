@@ -27,10 +27,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.graphs.list_all(limit=50)
+    res = n_client.graphs.list_all(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -39,6 +41,7 @@ with Neode(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `search`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Search by name or description                                       |
+| `offset`                                                            | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Number of results to skip for pagination                            |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Maximum number of results                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
@@ -174,7 +177,7 @@ with Neode(
 
 ### Response
 
-**[models.DeleteGraphResponse](../../models/deletegraphresponse.md)**
+**[models.SuccessMessage](../../models/successmessage.md)**
 
 ### Errors
 

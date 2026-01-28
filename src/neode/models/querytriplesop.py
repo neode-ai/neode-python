@@ -5,7 +5,7 @@ from .triple import Triple, TripleTypedDict
 from neode.types import BaseModel, UNSET_SENTINEL
 from neode.utils import FieldMetadata, QueryParamMetadata
 from pydantic import model_serializer
-from typing import List, Optional
+from typing import Awaitable, Callable, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -22,6 +22,8 @@ class QueryTriplesRequestTypedDict(TypedDict):
     r"""Filter by object entity ID"""
     predicate: NotRequired[str]
     r"""Filter by predicate (can be repeated for multiple predicates)"""
+    offset: NotRequired[int]
+    r"""Number of results to skip for pagination"""
     limit: NotRequired[int]
     r"""Maximum number of results"""
 
@@ -63,6 +65,12 @@ class QueryTriplesRequest(BaseModel):
     ] = None
     r"""Filter by predicate (can be repeated for multiple predicates)"""
 
+    offset: Annotated[
+        Optional[int],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = 0
+    r"""Number of results to skip for pagination"""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -79,6 +87,7 @@ class QueryTriplesRequest(BaseModel):
                 "subject_entity_id",
                 "object_entity_id",
                 "predicate",
+                "offset",
                 "limit",
             ]
         )
@@ -96,7 +105,7 @@ class QueryTriplesRequest(BaseModel):
         return m
 
 
-class QueryTriplesResponseTypedDict(TypedDict):
+class QueryTriplesResponseBodyTypedDict(TypedDict):
     r"""Successful response"""
 
     success: NotRequired[bool]
@@ -104,7 +113,7 @@ class QueryTriplesResponseTypedDict(TypedDict):
     count: NotRequired[int]
 
 
-class QueryTriplesResponse(BaseModel):
+class QueryTriplesResponseBody(BaseModel):
     r"""Successful response"""
 
     success: Optional[bool] = None
@@ -128,3 +137,16 @@ class QueryTriplesResponse(BaseModel):
                     m[k] = val
 
         return m
+
+
+class QueryTriplesResponseTypedDict(TypedDict):
+    result: QueryTriplesResponseBodyTypedDict
+
+
+class QueryTriplesResponse(BaseModel):
+    next: Union[
+        Callable[[], Optional[QueryTriplesResponse]],
+        Callable[[], Awaitable[Optional[QueryTriplesResponse]]],
+    ]
+
+    result: QueryTriplesResponseBody

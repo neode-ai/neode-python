@@ -27,10 +27,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -44,6 +46,7 @@ with Neode(
 | `subject_entity_id`                                                 | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter by subject entity ID                                         |
 | `object_entity_id`                                                  | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter by object entity ID                                          |
 | `predicate`                                                         | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter by predicate (can be repeated for multiple predicates)       |
+| `offset`                                                            | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Number of results to skip for pagination                            |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Maximum number of results                                           |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 

@@ -25,6 +25,7 @@ Neode API: A knowledge graph API for storing, querying, and generating triples. 
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Pagination](#pagination)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -40,10 +41,6 @@ Neode API: A knowledge graph API for storing, querying, and generating triples. 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to PyPI you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 > [!NOTE]
 > **Python version upgrade policy**
 >
@@ -56,7 +53,7 @@ The SDK can be installed with *uv*, *pip*, or *poetry* package managers.
 *uv* is a fast Python package installer and resolver, designed as a drop-in replacement for pip and pip-tools. It's recommended for its speed and modern Python tooling capabilities.
 
 ```bash
-uv add git+<UNSET>.git
+uv add neode
 ```
 
 ### PIP
@@ -64,7 +61,7 @@ uv add git+<UNSET>.git
 *PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
 
 ```bash
-pip install git+<UNSET>.git
+pip install neode
 ```
 
 ### Poetry
@@ -72,7 +69,7 @@ pip install git+<UNSET>.git
 *Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
 
 ```bash
-poetry add git+<UNSET>.git
+poetry add neode
 ```
 
 ### Shell and script usage with `uv`
@@ -132,10 +129,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 ```
 
 </br>
@@ -154,10 +153,12 @@ async def main():
         bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
     ) as n_client:
 
-        res = await n_client.triples.query_async(limit=50)
+        res = await n_client.triples.query_async(offset=0, limit=50)
 
-        # Handle response
-        print(res)
+        while res is not None:
+            # Handle items
+
+            res = res.next()
 
 asyncio.run(main())
 ```
@@ -184,10 +185,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 <!-- End Authentication [security] -->
@@ -237,6 +240,33 @@ with Neode(
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `None`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```python
+from neode import Neode
+import os
+
+
+with Neode(
+    bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
+) as n_client:
+
+    res = n_client.triples.query(offset=0, limit=50)
+
+    while res is not None:
+        # Handle items
+
+        res = res.next()
+
+```
+<!-- End Pagination [pagination] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -253,11 +283,13 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50,
+    res = n_client.triples.query(offset=0, limit=50,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -273,10 +305,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 <!-- End Retries [retries] -->
@@ -307,10 +341,12 @@ with Neode(
     res = None
     try:
 
-        res = n_client.triples.query(limit=50)
+        res = n_client.triples.query(offset=0, limit=50)
 
-        # Handle response
-        print(res)
+        while res is not None:
+            # Handle items
+
+            res = res.next()
 
 
     except errors.NeodeError as e:
@@ -376,10 +412,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 
@@ -396,10 +434,12 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.query(limit=50)
+    res = n_client.triples.query(offset=0, limit=50)
 
-    # Handle response
-    print(res)
+    while res is not None:
+        # Handle items
+
+        res = res.next()
 
 ```
 <!-- End Server Selection [server] -->
