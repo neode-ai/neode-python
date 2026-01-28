@@ -13,6 +13,9 @@ targets:
     neode:
         target: python
         source: Neode API
+        publish:
+            pypi:
+                token: $pypi_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/neode/neode-python/neode-api-code-samples

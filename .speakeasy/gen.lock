@@ -3,14 +3,14 @@ id: 3830c7a6-2d03-49bf-9209-f49570712039
 management:
   docChecksum: b3219fd2ad20a9bdd6764b599621b5ca
   docVersion: 1.0.0
-  speakeasyVersion: 1.700.1
-  generationVersion: 2.801.0
-  releaseVersion: 0.1.2
-  configChecksum: 05f9113856dfca3390a2b79494407191
+  speakeasyVersion: 1.700.2
+  generationVersion: 2.801.2
+  releaseVersion: 0.1.4
+  configChecksum: 17f675caceb5e19f6a5107e261dd90f7
 persistentEdits:
-  generation_id: 2b22065d-950c-4f3d-872e-ed8fbef50de2
-  pristine_commit_hash: 6fc3c47a3065e5489e12c8a3ffc707f7d3117d25
-  pristine_tree_hash: e942eeac1c4f04e9e8ba063e7eca910b1f9d076b
+  generation_id: c4d4d83c-7b60-4c5e-ac59-2db4e3700cf4
+  pristine_commit_hash: 6f1ba7252aefa844c009ce38639a6154c2ac2e31
+  pristine_tree_hash: e67515b70befff283cbcbc240987dab0c24cb47b
 features:
   python:
     additionalDependencies: 1.0.0
@@ -347,8 +347,8 @@ trackedFiles:
     pristine_git_object: 39bf75e004ae72eeae3cbef0f49cf5749f08690f
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:b1f0df3c4b522b81d9f161b25dfb345be5f8a1ad
-    pristine_git_object: f2fdf771fe62539467d10a081b0655a67c5e20e6
+    last_write_checksum: sha1:33d9a7a11dbf78d87830ec4e0222d524c5c0c1fc
+    pristine_git_object: 559c22256f06005f300e3296efd9f9845d8e6510
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -371,8 +371,8 @@ trackedFiles:
     pristine_git_object: e6d42f004e4abf711bbaf58dee511666b81fae3d
   src/neode/_version.py:
     id: 43196da9377f
-    last_write_checksum: sha1:2a37eb1f8b7cc9cddf854b3d34597c06588acfe2
-    pristine_git_object: c8956c79e72774d52d469a33ffa40ac0fe2e4476
+    last_write_checksum: sha1:61af9c7e8071889c1fc33a6542d7bf54ec26a2ee
+    pristine_git_object: 01e850afb1c83846dc5d3d449a063125175e3870
   src/neode/basesdk.py:
     id: ace29dab4ecb
     last_write_checksum: sha1:fa73d17d6da5ba9e4d70d8167ed0148a7c170ed6
