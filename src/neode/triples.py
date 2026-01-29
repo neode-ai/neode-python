@@ -4,10 +4,10 @@ from .basesdk import BaseSDK
 from jsonpath import JSONPath
 from neode import errors, models, utils
 from neode._hooks import HookContext
-from neode.types import BaseModel, OptionalNullable, UNSET
+from neode.types import OptionalNullable, UNSET
 from neode.utils import get_security_from_env
 from neode.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union, cast
+from typing import Any, Awaitable, Dict, List, Mapping, Optional, Union
 
 
 class Triples(BaseSDK):
@@ -315,9 +315,10 @@ class Triples(BaseSDK):
     def create(
         self,
         *,
-        request: Union[
-            models.CreateTriplesRequest, models.CreateTriplesRequestTypedDict
-        ],
+        triples: Union[List[models.TripleCreate], List[models.TripleCreateTypedDict]],
+        graph_id: Optional[str] = None,
+        index_id: Optional[str] = None,
+        source: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -325,9 +326,12 @@ class Triples(BaseSDK):
     ) -> models.CreateTriplesResponse:
         r"""Create triples
 
-        Create a single triple or batch of triples. Entities are automatically created/disambiguated based on subject and object names.
+        Create one or more triples. Entities are automatically created/disambiguated based on subject and object names.
 
-        :param request: The request object to send.
+        :param triples:
+        :param graph_id: Default graph for all triples
+        :param index_id: Default index for all triples
+        :param source: Default source for all triples
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -343,9 +347,12 @@ class Triples(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, models.CreateTriplesRequest)
-        request = cast(models.CreateTriplesRequest, request)
+        request = models.TripleBatchCreate(
+            triples=utils.get_pydantic_model(triples, List[models.TripleCreate]),
+            graph_id=graph_id,
+            index_id=index_id,
+            source=source,
+        )
 
         req = self._build_request(
             method="POST",
@@ -361,7 +368,7 @@ class Triples(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateTriplesRequest
+                request, False, False, "json", models.TripleBatchCreate
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -415,9 +422,10 @@ class Triples(BaseSDK):
     async def create_async(
         self,
         *,
-        request: Union[
-            models.CreateTriplesRequest, models.CreateTriplesRequestTypedDict
-        ],
+        triples: Union[List[models.TripleCreate], List[models.TripleCreateTypedDict]],
+        graph_id: Optional[str] = None,
+        index_id: Optional[str] = None,
+        source: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -425,9 +433,12 @@ class Triples(BaseSDK):
     ) -> models.CreateTriplesResponse:
         r"""Create triples
 
-        Create a single triple or batch of triples. Entities are automatically created/disambiguated based on subject and object names.
+        Create one or more triples. Entities are automatically created/disambiguated based on subject and object names.
 
-        :param request: The request object to send.
+        :param triples:
+        :param graph_id: Default graph for all triples
+        :param index_id: Default index for all triples
+        :param source: Default source for all triples
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -443,9 +454,12 @@ class Triples(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, models.CreateTriplesRequest)
-        request = cast(models.CreateTriplesRequest, request)
+        request = models.TripleBatchCreate(
+            triples=utils.get_pydantic_model(triples, List[models.TripleCreate]),
+            graph_id=graph_id,
+            index_id=index_id,
+            source=source,
+        )
 
         req = self._build_request_async(
             method="POST",
@@ -461,7 +475,7 @@ class Triples(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreateTriplesRequest
+                request, False, False, "json", models.TripleBatchCreate
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,

@@ -2,50 +2,29 @@
 
 from __future__ import annotations
 from .triple import Triple, TripleTypedDict
-from .triplebatchcreate import TripleBatchCreate, TripleBatchCreateTypedDict
-from .triplecreate import TripleCreate, TripleCreateTypedDict
 from neode.types import BaseModel, UNSET_SENTINEL
 from pydantic import model_serializer
-from typing import List, Optional, Union
-from typing_extensions import NotRequired, TypeAliasType, TypedDict
-
-
-CreateTriplesRequestTypedDict = TypeAliasType(
-    "CreateTriplesRequestTypedDict",
-    Union[TripleBatchCreateTypedDict, TripleCreateTypedDict],
-)
-
-
-CreateTriplesRequest = TypeAliasType(
-    "CreateTriplesRequest", Union[TripleBatchCreate, TripleCreate]
-)
-
-
-CreateTriplesDataTypedDict = TypeAliasType(
-    "CreateTriplesDataTypedDict", Union[TripleTypedDict, List[TripleTypedDict]]
-)
-
-
-CreateTriplesData = TypeAliasType("CreateTriplesData", Union[Triple, List[Triple]])
+from typing import List, Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class CreateTriplesResponseTypedDict(TypedDict):
-    r"""Successfully created"""
+    r"""Response from creating triples"""
 
     success: NotRequired[bool]
     message: NotRequired[str]
-    data: NotRequired[CreateTriplesDataTypedDict]
+    data: NotRequired[List[TripleTypedDict]]
     inserted_count: NotRequired[int]
 
 
 class CreateTriplesResponse(BaseModel):
-    r"""Successfully created"""
+    r"""Response from creating triples"""
 
     success: Optional[bool] = None
 
     message: Optional[str] = None
 
-    data: Optional[CreateTriplesData] = None
+    data: Optional[List[Triple]] = None
 
     inserted_count: Optional[int] = None
 

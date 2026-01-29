@@ -9,11 +9,7 @@ if TYPE_CHECKING:
     from .createentityop import CreateEntityResponse, CreateEntityResponseTypedDict
     from .creategraphop import CreateGraphResponse, CreateGraphResponseTypedDict
     from .createindexop import CreateIndexResponse, CreateIndexResponseTypedDict
-    from .createtriplesop import (
-        CreateTriplesData,
-        CreateTriplesDataTypedDict,
-        CreateTriplesRequest,
-        CreateTriplesRequestTypedDict,
+    from .createtriplesresponse import (
         CreateTriplesResponse,
         CreateTriplesResponseTypedDict,
     )
@@ -144,10 +140,6 @@ __all__ = [
     "CreateGraphResponseTypedDict",
     "CreateIndexResponse",
     "CreateIndexResponseTypedDict",
-    "CreateTriplesData",
-    "CreateTriplesDataTypedDict",
-    "CreateTriplesRequest",
-    "CreateTriplesRequestTypedDict",
     "CreateTriplesResponse",
     "CreateTriplesResponseTypedDict",
     "DeleteEntityRequest",
@@ -272,12 +264,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateGraphResponseTypedDict": ".creategraphop",
     "CreateIndexResponse": ".createindexop",
     "CreateIndexResponseTypedDict": ".createindexop",
-    "CreateTriplesData": ".createtriplesop",
-    "CreateTriplesDataTypedDict": ".createtriplesop",
-    "CreateTriplesRequest": ".createtriplesop",
-    "CreateTriplesRequestTypedDict": ".createtriplesop",
-    "CreateTriplesResponse": ".createtriplesop",
-    "CreateTriplesResponseTypedDict": ".createtriplesop",
+    "CreateTriplesResponse": ".createtriplesresponse",
+    "CreateTriplesResponseTypedDict": ".createtriplesresponse",
     "DeleteEntityRequest": ".deleteentityop",
     "DeleteEntityRequestTypedDict": ".deleteentityop",
     "DeleteGraphRequest": ".deletegraphop",

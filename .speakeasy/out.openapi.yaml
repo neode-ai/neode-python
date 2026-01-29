@@ -102,42 +102,26 @@ paths:
       tags:
         - "Triples"
       summary: "Create triples"
-      description: "Create a single triple or batch of triples. Entities are automatically created/disambiguated based on subject and object names."
+      description: "Create one or more triples. Entities are automatically created/disambiguated based on subject and object names."
       operationId: "createTriples"
       requestBody:
         required: true
         content:
           "application/json":
-            schema:
-              oneOf:
-                - {"$ref": "#/components/schemas/TripleCreate"}
-                - {"$ref": "#/components/schemas/TripleBatchCreate"}
+            schema: {"$ref": "#/components/schemas/TripleBatchCreate"}
             examples:
               "single":
                 summary: "Single triple"
-                value: {"subject": "Elon Musk", "predicate": "founded", "object": "SpaceX", "object_type": "entity", "confidence": 0.95, "source": "https://wikipedia.org/wiki/SpaceX", "graph_id": "550e8400-e29b-41d4-a716-446655440000"}
+                value: {"triples": [{"subject": "Elon Musk", "predicate": "founded", "object": "SpaceX", "object_type": "entity", "confidence": 0.95, "source": "https://wikipedia.org/wiki/SpaceX"}], "index_id": "550e8400-e29b-41d4-a716-446655440000"}
               "batch":
-                summary: "Batch of triples"
-                value: {"triples": [{"subject": "Tesla", "predicate": "headquarters_in", "object": "Austin, Texas", "object_type": "entity", "confidence": 0.9}, {"subject": "Tesla", "predicate": "founded_year", "object": "2003", "object_type": "literal", "confidence": 0.95}], "graph_id": "550e8400-e29b-41d4-a716-446655440000"}
+                summary: "Multiple triples"
+                value: {"triples": [{"subject": "Tesla", "predicate": "headquarters_in", "object": "Austin, Texas", "object_type": "entity", "confidence": 0.9}, {"subject": "Tesla", "predicate": "founded_year", "object": "2003", "object_type": "literal", "confidence": 0.95}], "index_id": "550e8400-e29b-41d4-a716-446655440000"}
       responses:
         "200":
           description: "Successfully created"
           content:
             "application/json":
-              schema:
-                type: "object"
-                properties:
-                  "success":
-                    type: "boolean"
-                  "message":
-                    type: "string"
-                  "data":
-                    oneOf:
-                      - {"$ref": "#/components/schemas/Triple"}
-                      - type: "array"
-                        items: {"$ref": "#/components/schemas/Triple"}
-                  "inserted_count":
-                    type: "integer"
+              schema: {"$ref": "#/components/schemas/CreateTriplesResponse"}
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
       x-speakeasy-name-override: "create"
@@ -916,6 +900,19 @@ components:
         "graph_id":
           type: "string"
           format: "uuid"
+    "CreateTriplesResponse":
+      type: "object"
+      description: "Response from creating triples"
+      properties:
+        "success":
+          type: "boolean"
+        "message":
+          type: "string"
+        "data":
+          type: "array"
+          items: {"$ref": "#/components/schemas/Triple"}
+        "inserted_count":
+          type: "integer"
     "Entity":
       type: "object"
       description: "An entity representing a subject or object in the knowledge graph"

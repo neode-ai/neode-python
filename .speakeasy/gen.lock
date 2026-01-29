@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 3830c7a6-2d03-49bf-9209-f49570712039
 management:
-  docChecksum: bf5e4c55719ce8aa838b9ec9d7211c73
+  docChecksum: b9edb158747baab8de86082aef4d0762
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 0.2.2
-  configChecksum: 3725072ceb76becd1553b6eb704e6945
+  releaseVersion: 0.3.0
+  configChecksum: f578cd6988a4b3ed37016ce80aa98b79
   published: true
 persistentEdits:
-  generation_id: c91ad836-ed04-4988-93b3-4dd3ca786def
-  pristine_commit_hash: b026da3cc72c2dda367f41c1d8f64a1260bcbfa1
-  pristine_tree_hash: d8d99cbcdf8b4cd122114dc9b8c6c2ad0b5c32ab
+  generation_id: 1d4dfbe0-09e0-4630-a54d-f4f17d1625ce
+  pristine_commit_hash: 5f95b1dd9499efd44ca15472fb62b8be4ed58cb7
+  pristine_tree_hash: a9e6a7eca65fd93d62df3d64648e0d15eadc5682
 features:
   python:
     additionalDependencies: 1.0.0
@@ -33,7 +33,6 @@ features:
     responseFormat: 1.0.1
     retries: 3.0.3
     sdkHooks: 1.2.1
-    unions: 3.1.2
 trackedFiles:
   .devcontainer/README.md:
     id: b170c0f184ac
@@ -79,18 +78,10 @@ trackedFiles:
     id: 571d66dbcee1
     last_write_checksum: sha1:fcbc5c84557b5b311f5e14cf4d6e3267224c3cf9
     pristine_git_object: 484845c5c4a7ff9d54ce30173d44960e0dd4921d
-  docs/models/createtriplesdata.md:
-    id: b281b2763c58
-    last_write_checksum: sha1:e0b665190de5594ded95e185b1e81595298bae4d
-    pristine_git_object: 5e3e523e3f1695882c70d5ec85f5c320b1f61d12
-  docs/models/createtriplesrequest.md:
-    id: 64d75249c979
-    last_write_checksum: sha1:350098471886a4f0c6741209b7bd94a2131ff71b
-    pristine_git_object: 379a8b29b77638e9e0bf3b25a83674bf050453de
   docs/models/createtriplesresponse.md:
     id: 3ec629849865
-    last_write_checksum: sha1:b74fc68014c4b5a22bbf9406a633b69b710f6ed1
-    pristine_git_object: 359b0b56b573dab04e777b365279653249ef7674
+    last_write_checksum: sha1:a5b7220a52b01856225b4826e750a9693424179e
+    pristine_git_object: 0f40aeb09674872adb1924be028a36a5134a1722
   docs/models/deleteentityrequest.md:
     id: 46e5cab69e2e
     last_write_checksum: sha1:0dfa25b8006e2ea23b9bbe9865e47a9ee8c8fdc1
@@ -353,8 +344,8 @@ trackedFiles:
     pristine_git_object: fd39befd16f1602d3e53a4313803e8613c485024
   docs/sdks/triples/README.md:
     id: b030e5a0a33b
-    last_write_checksum: sha1:03def051376214ea9f59c880b5c20b096849ccd1
-    pristine_git_object: a85c901a7ee03f3ea82d6ef688d8d046d44f6758
+    last_write_checksum: sha1:3c0ff948372149000059d339b183c7ab1ff49f36
+    pristine_git_object: f766086fe90e229503e3d0cfb2efeabaa61cadb7
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -365,8 +356,8 @@ trackedFiles:
     pristine_git_object: 39bf75e004ae72eeae3cbef0f49cf5749f08690f
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:08cfe8c897fc59c294b17d95306f6b046e619e72
-    pristine_git_object: 1b1d6624bffbcc90d357d1a57f179567a3a77586
+    last_write_checksum: sha1:5759f6c95782e308eb316f93a51dadd982d0e40f
+    pristine_git_object: ec026ef56712f5245e1667ce6362803353448def
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -389,8 +380,8 @@ trackedFiles:
     pristine_git_object: e6d42f004e4abf711bbaf58dee511666b81fae3d
   src/neode/_version.py:
     id: 43196da9377f
-    last_write_checksum: sha1:6ca2e0e8b5562382959e7c65368c123a96a25f23
-    pristine_git_object: 4639f7dddc72075c99e99af03c59152664fd8bd7
+    last_write_checksum: sha1:c10d5113c5dcbdb8ecb3637050216730813b18eb
+    pristine_git_object: 6e3a05de716386468ac42d9f0578a3070443086d
   src/neode/basesdk.py:
     id: ace29dab4ecb
     last_write_checksum: sha1:fa73d17d6da5ba9e4d70d8167ed0148a7c170ed6
@@ -445,8 +436,8 @@ trackedFiles:
     pristine_git_object: c03a2192e73e71de5cc0f4f7bb90295170430687
   src/neode/models/__init__.py:
     id: a4877aba650c
-    last_write_checksum: sha1:78ef100e58e4551e5af7b3d5a487fd22a27c83cc
-    pristine_git_object: f94ac88ae3503bca3ee2a438e3ca2c006e883107
+    last_write_checksum: sha1:acd562f442a5aa28d32544798e58ae8f36fde988
+    pristine_git_object: 8a03e89d28b527ec62fd1893df4d33bdb8a2bf0d
   src/neode/models/createentityop.py:
     id: 4a153bf7f2b8
     last_write_checksum: sha1:993561528b0e2ca4ccab1ef00eb76b5aaf094445
@@ -459,10 +450,10 @@ trackedFiles:
     id: 2f509021856e
     last_write_checksum: sha1:077c503b26b5e2e871df6f09ddbca4e8729b2ebf
     pristine_git_object: 45dab568159754c2abe633a24846811f06fb76f1
-  src/neode/models/createtriplesop.py:
-    id: 215fa6f56941
-    last_write_checksum: sha1:094c5e535da10c3182c6d7b56cbafe4c388e0b6f
-    pristine_git_object: 295b0322bdabb95568d61fb3425f969fee3a008a
+  src/neode/models/createtriplesresponse.py:
+    id: 31e806eac8cd
+    last_write_checksum: sha1:97fb6e0b46946d8b2896a2886c602c5efe1749de
+    pristine_git_object: b4ecb4fa4a869f02ded36e180bcaad593291ddfa
   src/neode/models/deleteentityop.py:
     id: bcc6a0039b15
     last_write_checksum: sha1:1c76187dae2e0266391666171c66da4d95bc800c
@@ -597,8 +588,8 @@ trackedFiles:
     pristine_git_object: 834c778211f614db012196fb03b52049d0a8f533
   src/neode/triples.py:
     id: 8885bc9c9b90
-    last_write_checksum: sha1:1e8ba941833ac1597f427f983fdd2b5c0ae472db
-    pristine_git_object: 63add0bc806e1c559d91a3450cca79a037aca1c9
+    last_write_checksum: sha1:3334d324a2cd8ab374be1f2c4210e64a53217733
+    pristine_git_object: 772cc4718fe956e4f0cb32d5c6b082e9c185a302
   src/neode/types/__init__.py:
     id: c3ccd0e15703
     last_write_checksum: sha1:140ebdd01a46f92ffc710c52c958c4eba3cf68ed
@@ -692,7 +683,7 @@ examples:
   createTriples:
     single:
       requestBody:
-        application/json: {"subject": "Elon Musk", "predicate": "founded", "object": "SpaceX", "object_type": "entity", "confidence": 0.95, "source": "https://wikipedia.org/wiki/SpaceX", "graph_id": "550e8400-e29b-41d4-a716-446655440000"}
+        application/json: {"triples": [{"subject": "Elon Musk", "predicate": "founded", "object": "SpaceX", "object_type": "entity", "confidence": 0.95, "source": "https://wikipedia.org/wiki/SpaceX"}], "index_id": "550e8400-e29b-41d4-a716-446655440000"}
       responses:
         "200":
           application/json: {}
@@ -702,7 +693,7 @@ examples:
           application/json: {"success": false}
     batch:
       requestBody:
-        application/json: {"triples": [{"subject": "Tesla", "predicate": "headquarters_in", "object": "Austin, Texas", "object_type": "entity", "confidence": 0.9}, {"subject": "Tesla", "predicate": "founded_year", "object": "2003", "object_type": "literal", "confidence": 0.95}], "graph_id": "550e8400-e29b-41d4-a716-446655440000"}
+        application/json: {"triples": [{"subject": "Tesla", "predicate": "headquarters_in", "object": "Austin, Texas", "object_type": "entity", "confidence": 0.9}, {"subject": "Tesla", "predicate": "founded_year", "object": "2003", "object_type": "literal", "confidence": 0.95}], "index_id": "550e8400-e29b-41d4-a716-446655440000"}
       responses:
         "200":
           application/json: {}
@@ -712,7 +703,7 @@ examples:
           application/json: {"success": false}
     speakeasy-default-create-triples:
       requestBody:
-        application/json: {"subject": "<value>", "predicate": "<value>", "object": "<value>", "object_type": "literal"}
+        application/json: {"triples": []}
       responses:
         "200":
           application/json: {}

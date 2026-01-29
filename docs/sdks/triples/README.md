@@ -64,7 +64,7 @@ with Neode(
 
 ## create
 
-Create a single triple or batch of triples. Entities are automatically created/disambiguated based on subject and object names.
+Create one or more triples. Entities are automatically created/disambiguated based on subject and object names.
 
 ### Example Usage
 
@@ -78,15 +78,16 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.triples.create(request={
-        "subject": "Elon Musk",
-        "predicate": "founded",
-        "object": "SpaceX",
-        "object_type": "entity",
-        "confidence": 0.95,
-        "source": "https://wikipedia.org/wiki/SpaceX",
-        "graph_id": "550e8400-e29b-41d4-a716-446655440000",
-    })
+    res = n_client.triples.create(triples=[
+        {
+            "subject": "Elon Musk",
+            "predicate": "founded",
+            "object": "SpaceX",
+            "object_type": "entity",
+            "confidence": 0.95,
+            "source": "https://wikipedia.org/wiki/SpaceX",
+        },
+    ], index_id="550e8400-e29b-41d4-a716-446655440000")
 
     # Handle response
     print(res)
@@ -97,7 +98,10 @@ with Neode(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [models.CreateTriplesRequest](../../models/createtriplesrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `triples`                                                           | List[[models.TripleCreate](../../models/triplecreate.md)]           | :heavy_check_mark:                                                  | N/A                                                                 |
+| `graph_id`                                                          | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Default graph for all triples                                       |
+| `index_id`                                                          | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Default index for all triples                                       |
+| `source`                                                            | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Default source for all triples                                      |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
