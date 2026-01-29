@@ -27,10 +27,13 @@ Neode API: A knowledge graph API for storing, querying, and generating triples. 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [neode](#neode)
+* [Neode Python SDK](#neode-python-sdk)
+  * [Features](#features)
   * [SDK Installation](#sdk-installation)
   * [IDE Support](#ide-support)
+  * [Quick Start](#quick-start)
   * [SDK Example Usage](#sdk-example-usage)
+  * [Getting Your API Key](#getting-your-api-key)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Pagination](#pagination)
@@ -40,6 +43,7 @@ Neode API: A knowledge graph API for storing, querying, and generating triples. 
   * [Custom HTTP Client](#custom-http-client)
   * [Resource Management](#resource-management)
   * [Debugging](#debugging)
+  * [Support](#support)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)

@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:e9926bbc2f19c1883d8558ebd51dc5f40f13741cd2866664e7b4cd9b681dffcb
         sourceBlobDigest: sha256:788dfac730497d762adb8104079bcd36daa5c797f00800b943ba227a7c0750f4
         codeSamplesNamespace: neode-api-code-samples
-        codeSamplesRevisionDigest: sha256:f85961d53b3abe4af15450ff0b1a979b0f71a8604e1759e576aacf74d81326a9
+        codeSamplesRevisionDigest: sha256:0643e7cde52a0754e0f911499cbfc5ac3d9cbbf0eb051fbe03ad2747e9d8e932
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
