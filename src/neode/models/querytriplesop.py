@@ -16,6 +16,8 @@ class QueryTriplesRequestTypedDict(TypedDict):
     r"""Filter by exact subject match"""
     graph_id: NotRequired[str]
     r"""Filter by graph ID"""
+    index_id: NotRequired[str]
+    r"""Filter by index ID"""
     subject_entity_id: NotRequired[str]
     r"""Filter by subject entity ID"""
     object_entity_id: NotRequired[str]
@@ -46,6 +48,12 @@ class QueryTriplesRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Filter by graph ID"""
+
+    index_id: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Filter by index ID"""
 
     subject_entity_id: Annotated[
         Optional[str],
@@ -84,6 +92,7 @@ class QueryTriplesRequest(BaseModel):
                 "search",
                 "subject",
                 "graph_id",
+                "index_id",
                 "subject_entity_id",
                 "object_entity_id",
                 "predicate",

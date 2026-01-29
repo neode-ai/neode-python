@@ -2,8 +2,8 @@ speakeasyVersion: 1.700.2
 sources:
     Neode API:
         sourceNamespace: neode-api
-        sourceRevisionDigest: sha256:0d3a3b7d7db15090ba4d06c4384e6eddca7a7a2dd110ddc9b9f90b25cc84c0bf
-        sourceBlobDigest: sha256:f1f5baff6a859aa4e9dda8c565775d0d2b985b8e5a10785e3be7441cd53f5a3a
+        sourceRevisionDigest: sha256:c2c507d7364ededd5b9a1ccb317dfe0379b62d6dec665959360fcd13c022c6eb
+        sourceBlobDigest: sha256:1d031ce371476ba6593ac88997bd0b706a42a706b373133bc2e577319d228ac2
         tags:
             - latest
             - 1.0.0
@@ -11,10 +11,10 @@ targets:
     neode:
         source: Neode API
         sourceNamespace: neode-api
-        sourceRevisionDigest: sha256:0d3a3b7d7db15090ba4d06c4384e6eddca7a7a2dd110ddc9b9f90b25cc84c0bf
-        sourceBlobDigest: sha256:f1f5baff6a859aa4e9dda8c565775d0d2b985b8e5a10785e3be7441cd53f5a3a
+        sourceRevisionDigest: sha256:c2c507d7364ededd5b9a1ccb317dfe0379b62d6dec665959360fcd13c022c6eb
+        sourceBlobDigest: sha256:1d031ce371476ba6593ac88997bd0b706a42a706b373133bc2e577319d228ac2
         codeSamplesNamespace: neode-api-code-samples
-        codeSamplesRevisionDigest: sha256:03a131f7dd613e021e9e4c52b6dbe1ca47eef764a31c34a36b6517cd0b8a37b7
+        codeSamplesRevisionDigest: sha256:9908a09e4be67492b68ee15257042479a4a798feb4b9be894b2afa3fcad0af4b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 3830c7a6-2d03-49bf-9209-f49570712039
 management:
-  docChecksum: 0dc2e7408f5a5a7e7b878208141d47c3
+  docChecksum: 3b7bffb67119f25d2b23c4ec51a8e54f
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 0.3.3
-  configChecksum: 723fa35d8cb4ece270187e23dab5892c
+  releaseVersion: 0.3.4
+  configChecksum: 8d11b3cf5d993d16e5c0162d093a79e1
   published: true
 persistentEdits:
-  generation_id: d553366e-cb6a-42db-a05e-c8a7da97dbe9
-  pristine_commit_hash: 863b3bdca178014df12603a9891b2f2677af9dbf
-  pristine_tree_hash: e7f8d06d5d4fa1ffa8d6aef5ac15647d7951039d
+  generation_id: e40b0afb-82c9-46ff-85b7-8a59bbf9a454
+  pristine_commit_hash: a748f5003cfc2a50a5ce1e7fd70e0234c7f9c6a6
+  pristine_tree_hash: 4cfd3ff82381ea058a7a8979f27646ebfbe6790d
 features:
   python:
     additionalDependencies: 1.0.0
@@ -204,8 +204,8 @@ trackedFiles:
     pristine_git_object: 8a9b215a42d141e0477dc74b75c030e8cd8a58b2
   docs/models/querytriplesrequest.md:
     id: 622cfe2082f8
-    last_write_checksum: sha1:7ff7d95053d31535541c7008d2601d8ba5f3b938
-    pristine_git_object: 896647086841e8a7835f9f8063532747515404f0
+    last_write_checksum: sha1:1877e2e7103714e472bf20b9a711be48def1b355
+    pristine_git_object: bc90406b6b910dc20e4344d0a0cab03dfab10710
   docs/models/querytriplesresponse.md:
     id: fb938473449a
     last_write_checksum: sha1:995e2ba1c8c0a38b75b7f3072d24079ec85d15e4
@@ -344,8 +344,8 @@ trackedFiles:
     pristine_git_object: fd39befd16f1602d3e53a4313803e8613c485024
   docs/sdks/triples/README.md:
     id: b030e5a0a33b
-    last_write_checksum: sha1:eb622209c486f55cf554ffe67d578d71e905ddad
-    pristine_git_object: f8d438d9c2ab8480a9bfb24548be84a8fd6e13fc
+    last_write_checksum: sha1:4bdd18d32a54ad9afbf1303426e229351299dcc1
+    pristine_git_object: 7c155ce612da03e8c1f6e6ffd77dd69be7f0b177
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -356,8 +356,8 @@ trackedFiles:
     pristine_git_object: 39bf75e004ae72eeae3cbef0f49cf5749f08690f
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:4905d1f8bc9a7ff23c9493280daacaced2781132
-    pristine_git_object: 43ec6ac492f73dc8f0396d6692a6a0ee3f9df562
+    last_write_checksum: sha1:eacedb68cf44649ec73d8c6e44406e70395b5af3
+    pristine_git_object: 85735e757aae46142977bbc40134e761ef2a1d3d
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -380,8 +380,8 @@ trackedFiles:
     pristine_git_object: e6d42f004e4abf711bbaf58dee511666b81fae3d
   src/neode/_version.py:
     id: 43196da9377f
-    last_write_checksum: sha1:6f3773bd958a2d62bc09210f16d4d5f649c0772a
-    pristine_git_object: 0ea7d28e0e1ded9bc6918694177394c03ae57fce
+    last_write_checksum: sha1:1d0ab4486b3733770673b7f24413b4c42152e806
+    pristine_git_object: b1c4eb435676db6f89b17e7f4a05f9d921e0adfb
   src/neode/basesdk.py:
     id: ace29dab4ecb
     last_write_checksum: sha1:fa73d17d6da5ba9e4d70d8167ed0148a7c170ed6
@@ -524,8 +524,8 @@ trackedFiles:
     pristine_git_object: 4d42070d7a169d925ca0cad86d15508250374b30
   src/neode/models/querytriplesop.py:
     id: 1363a6e37cb2
-    last_write_checksum: sha1:ea65b77f9a85477490f3087cb6a52c5393bf072b
-    pristine_git_object: c78f9379ab3c981face056c8af3bfc4231e82be7
+    last_write_checksum: sha1:cddf788653e3bad18e6e029b31216e9db3fb2820
+    pristine_git_object: 141cead4092c9aac27851646749cd3a10e7c373b
   src/neode/models/searchrequest.py:
     id: 87e489459894
     last_write_checksum: sha1:974ff5955895854da3644d87a9098e14bba99e4c
@@ -588,8 +588,8 @@ trackedFiles:
     pristine_git_object: 834c778211f614db012196fb03b52049d0a8f533
   src/neode/triples.py:
     id: 8885bc9c9b90
-    last_write_checksum: sha1:d4e78a395b85de4539eee63f25cf957c71a1c49f
-    pristine_git_object: 19d3935326ac09b10cd41009ff6c934bbded2483
+    last_write_checksum: sha1:73cf90061cdaaa5047d444532548cf66bfad053a
+    pristine_git_object: 34ca8ec8bfae5ef4a5e84abe635de55564df5efd
   src/neode/types/__init__.py:
     id: c3ccd0e15703
     last_write_checksum: sha1:140ebdd01a46f92ffc710c52c958c4eba3cf68ed

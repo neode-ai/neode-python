@@ -19,6 +19,7 @@ class Triples(BaseSDK):
         search: Optional[str] = None,
         subject: Optional[str] = None,
         graph_id: Optional[str] = None,
+        index_id: Optional[str] = None,
         subject_entity_id: Optional[str] = None,
         object_entity_id: Optional[str] = None,
         predicate: Optional[str] = None,
@@ -36,6 +37,7 @@ class Triples(BaseSDK):
         :param search: Full-text search across subject, predicate, and object
         :param subject: Filter by exact subject match
         :param graph_id: Filter by graph ID
+        :param index_id: Filter by index ID
         :param subject_entity_id: Filter by subject entity ID
         :param object_entity_id: Filter by object entity ID
         :param predicate: Filter by predicate (can be repeated for multiple predicates)
@@ -60,6 +62,7 @@ class Triples(BaseSDK):
             search=search,
             subject=subject,
             graph_id=graph_id,
+            index_id=index_id,
             subject_entity_id=subject_entity_id,
             object_entity_id=object_entity_id,
             predicate=predicate,
@@ -126,6 +129,7 @@ class Triples(BaseSDK):
                 search=search,
                 subject=subject,
                 graph_id=graph_id,
+                index_id=index_id,
                 subject_entity_id=subject_entity_id,
                 object_entity_id=object_entity_id,
                 predicate=predicate,
@@ -167,6 +171,7 @@ class Triples(BaseSDK):
         search: Optional[str] = None,
         subject: Optional[str] = None,
         graph_id: Optional[str] = None,
+        index_id: Optional[str] = None,
         subject_entity_id: Optional[str] = None,
         object_entity_id: Optional[str] = None,
         predicate: Optional[str] = None,
@@ -184,6 +189,7 @@ class Triples(BaseSDK):
         :param search: Full-text search across subject, predicate, and object
         :param subject: Filter by exact subject match
         :param graph_id: Filter by graph ID
+        :param index_id: Filter by index ID
         :param subject_entity_id: Filter by subject entity ID
         :param object_entity_id: Filter by object entity ID
         :param predicate: Filter by predicate (can be repeated for multiple predicates)
@@ -208,6 +214,7 @@ class Triples(BaseSDK):
             search=search,
             subject=subject,
             graph_id=graph_id,
+            index_id=index_id,
             subject_entity_id=subject_entity_id,
             object_entity_id=object_entity_id,
             predicate=predicate,
@@ -277,6 +284,7 @@ class Triples(BaseSDK):
                 search=search,
                 subject=subject,
                 graph_id=graph_id,
+                index_id=index_id,
                 subject_entity_id=subject_entity_id,
                 object_entity_id=object_entity_id,
                 predicate=predicate,
