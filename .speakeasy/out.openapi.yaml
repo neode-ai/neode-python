@@ -6,7 +6,7 @@ info:
   contact:
     name: "Neode"
 servers:
-  - url: "https://neode.ai"
+  - url: "https://www.neode.ai"
     description: "Production server"
   - url: "http://localhost:5173"
     description: "Local development"
@@ -864,6 +864,7 @@ components:
       type: "object"
       required:
         - "triples"
+        - "index_id"
       properties:
         "triples":
           type: "array"
@@ -875,7 +876,7 @@ components:
         "index_id":
           type: "string"
           format: "uuid"
-          description: "Default index for all triples"
+          description: "Index for entity disambiguation (required)"
         "source":
           type: "string"
           description: "Default source for all triples"

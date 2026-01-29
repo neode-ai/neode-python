@@ -316,8 +316,8 @@ class Triples(BaseSDK):
         self,
         *,
         triples: Union[List[models.TripleCreate], List[models.TripleCreateTypedDict]],
+        index_id: str,
         graph_id: Optional[str] = None,
-        index_id: Optional[str] = None,
         source: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -329,8 +329,8 @@ class Triples(BaseSDK):
         Create one or more triples. Entities are automatically created/disambiguated based on subject and object names.
 
         :param triples:
+        :param index_id: Index for entity disambiguation (required)
         :param graph_id: Default graph for all triples
-        :param index_id: Default index for all triples
         :param source: Default source for all triples
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -423,8 +423,8 @@ class Triples(BaseSDK):
         self,
         *,
         triples: Union[List[models.TripleCreate], List[models.TripleCreateTypedDict]],
+        index_id: str,
         graph_id: Optional[str] = None,
-        index_id: Optional[str] = None,
         source: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -436,8 +436,8 @@ class Triples(BaseSDK):
         Create one or more triples. Entities are automatically created/disambiguated based on subject and object names.
 
         :param triples:
+        :param index_id: Index for entity disambiguation (required)
         :param graph_id: Default graph for all triples
-        :param index_id: Default index for all triples
         :param source: Default source for all triples
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

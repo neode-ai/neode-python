@@ -3,10 +3,10 @@
 import importlib.metadata
 
 __title__: str = "neode"
-__version__: str = "0.3.0"
+__version__: str = "0.3.3"
 __openapi_doc_version__: str = "1.0.0"
 __gen_version__: str = "2.801.2"
-__user_agent__: str = "speakeasy-sdk/python 0.3.0 2.801.2 1.0.0 neode"
+__user_agent__: str = "speakeasy-sdk/python 0.3.3 2.801.2 1.0.0 neode"
 
 try:
     if __package__ is not None:

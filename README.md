@@ -453,7 +453,7 @@ You can override the default server globally by passing a server index to the `s
 
 | #   | Server                  | Description       |
 | --- | ----------------------- | ----------------- |
-| 0   | `https://neode.ai`      | Production server |
+| 0   | `https://www.neode.ai`  | Production server |
 | 1   | `http://localhost:5173` | Local development |
 
 #### Example

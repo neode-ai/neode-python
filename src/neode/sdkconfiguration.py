@@ -16,7 +16,7 @@ from typing import Callable, Dict, Optional, Tuple, Union
 
 
 SERVERS = [
-    "https://neode.ai",
+    "https://www.neode.ai",
     # Production server
     "http://localhost:5173",
     # Local development

@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://neode.ai",
+      "url": "https://www.neode.ai",
       "description": "Production server"
     },
     {
@@ -1098,7 +1098,7 @@
       },
       "TripleBatchCreate": {
         "type": "object",
-        "required": ["triples"],
+        "required": ["triples", "index_id"],
         "properties": {
           "triples": {
             "type": "array",
@@ -1112,7 +1112,7 @@
           "index_id": {
             "type": "string",
             "format": "uuid",
-            "description": "Default index for all triples"
+            "description": "Index for entity disambiguation (required)"
           },
           "source": {
             "type": "string",

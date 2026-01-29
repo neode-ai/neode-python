@@ -10,10 +10,10 @@ from typing_extensions import NotRequired, TypedDict
 
 class TripleBatchCreateTypedDict(TypedDict):
     triples: List[TripleCreateTypedDict]
+    index_id: str
+    r"""Index for entity disambiguation (required)"""
     graph_id: NotRequired[str]
     r"""Default graph for all triples"""
-    index_id: NotRequired[str]
-    r"""Default index for all triples"""
     source: NotRequired[str]
     r"""Default source for all triples"""
 
@@ -21,18 +21,18 @@ class TripleBatchCreateTypedDict(TypedDict):
 class TripleBatchCreate(BaseModel):
     triples: List[TripleCreate]
 
+    index_id: str
+    r"""Index for entity disambiguation (required)"""
+
     graph_id: Optional[str] = None
     r"""Default graph for all triples"""
-
-    index_id: Optional[str] = None
-    r"""Default index for all triples"""
 
     source: Optional[str] = None
     r"""Default source for all triples"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["graph_id", "index_id", "source"])
+        optional_fields = set(["graph_id", "source"])
         serialized = handler(self)
         m = {}
 
