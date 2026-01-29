@@ -1,20 +1,28 @@
-# neode
+# Neode Python SDK
 
-Developer-friendly & type-safe Python SDK specifically catered to leverage *neode* API.
+The official Python SDK for the [Neode](https://neode.ai) knowledge graph API. Build intelligent applications with a developer-friendly, type-safe interface for storing, querying, and generating knowledge triples.
 
-[![Built by Speakeasy](https://img.shields.io/badge/Built_by-SPEAKEASY-374151?style=for-the-badge&labelColor=f3f4f6)](https://www.speakeasy.com/?utm_source=neode&utm_campaign=python)
-[![License: MIT](https://img.shields.io/badge/LICENSE_//_MIT-3b5bdb?style=for-the-badge&labelColor=eff6ff)](https://opensource.org/licenses/MIT)
+[![PyPI](https://img.shields.io/pypi/v/neode.svg)](https://pypi.org/project/neode/)
+[![Python Version](https://img.shields.io/pypi/pyversions/neode.svg)](https://pypi.org/project/neode/)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Built by Speakeasy](https://img.shields.io/badge/Built_by-Speakeasy-black)](https://www.speakeasy.com/?utm_source=neode&utm_campaign=python)
 
-
-<br /><br />
-> [!IMPORTANT]
-> This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/neode/neode-python). Delete this section before > publishing to a package manager.
 
 <!-- Start Summary [summary] -->
 ## Summary
 
 Neode API: A knowledge graph API for storing, querying, and generating triples. Use Neode as a triples store for your LLM applications - store facts, query knowledge, and generate new triples from any context.
 <!-- End Summary [summary] -->
+
+## Features
+
+- **Knowledge Graphs** - Store and query RDF-style triples (subject, predicate, object)
+- **Semantic Search** - Find relevant knowledge using natural language queries
+- **AI-Powered Generation** - Generate new triples from any text using LLMs
+- **Full Async Support** - Native async/await for high-performance applications
+- **Automatic Pagination** - Seamlessly iterate through large result sets
+- **Built-in Retries** - Configurable retry logic with exponential backoff
+- **Type Safety** - Full Pydantic models for request/response validation
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
@@ -114,6 +122,35 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 - [PyCharm Pydantic Plugin](https://docs.pydantic.dev/latest/integrations/pycharm/)
 <!-- End IDE Support [idesupport] -->
 
+## Quick Start
+
+Get up and running in minutes:
+
+```python
+import os
+from neode import Neode
+
+# Initialize the client
+client = Neode(bearer_auth=os.getenv("NEODE_BEARER_AUTH"))
+
+# Create a triple (fact)
+client.triples.create(triples=[{
+    "subject": "Python",
+    "predicate": "is_a",
+    "object": "programming_language"
+}])
+
+# Query your knowledge graph
+results = client.triples.query(limit=10)
+for triple in results.data:
+    print(f"{triple.subject} -> {triple.predicate} -> {triple.object}")
+
+# Generate new triples from text using AI
+generated = client.generation.generate_triples(
+    context="Albert Einstein developed the theory of relativity in 1905."
+)
+```
+
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
@@ -163,6 +200,21 @@ async def main():
 asyncio.run(main())
 ```
 <!-- End SDK Example Usage [usage] -->
+
+## Getting Your API Key
+
+To use the Neode SDK, you'll need an API key:
+
+1. Sign up or log in at [neode.ai](https://neode.ai)
+2. Navigate to **Settings** > **API Keys**
+3. Click **Create API Key** and copy your new key
+4. Set the key as an environment variable:
+
+```bash
+export NEODE_BEARER_AUTH="your-api-key-here"
+```
+
+The SDK automatically reads from the `NEODE_BEARER_AUTH` environment variable, or you can pass it directly when initializing the client.
 
 <!-- Start Authentication [security] -->
 ## Authentication
@@ -572,17 +624,29 @@ You can also enable a default debug logger by setting an environment variable `N
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
+## Support
+
+- **Documentation**: [neode.ai/docs](https://neode.ai/docs)
+- **Issues**: [GitHub Issues](https://github.com/neode-ai/neode-python/issues)
+- **Email**: support@neode.ai
+
 # Development
 
 ## Maturity
 
-This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
-to a specific package version. This way, you can install the same version each time without breaking changes unless you are intentionally
-looking for the latest version.
+This SDK is in beta. While we strive for stability, there may be breaking changes between minor versions. We recommend pinning to a specific version in production:
+
+```bash
+# Lock to a specific version
+uv add neode==0.2.1
+```
 
 ## Contributions
 
-While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
-We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
+This SDK is generated programmatically using [Speakeasy](https://www.speakeasy.com/?utm_source=neode&utm_campaign=python). While we welcome feedback and suggestions:
 
-### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=neode&utm_campaign=python)
+- **Bug reports**: Open an issue describing the problem and steps to reproduce
+- **Feature requests**: Open an issue with your use case and proposed solution
+- **API improvements**: Changes to the underlying API should be directed to the main Neode repository
+
+Note: Direct code contributions to generated files will be overwritten on the next generation cycle.
