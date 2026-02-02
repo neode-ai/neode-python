@@ -22,7 +22,7 @@ class Triples(BaseSDK):
         index_id: Optional[str] = None,
         subject_entity_id: Optional[str] = None,
         object_entity_id: Optional[str] = None,
-        predicate: Optional[str] = None,
+        predicate: Optional[List[str]] = None,
         offset: Optional[int] = 0,
         limit: Optional[int] = 50,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -40,7 +40,7 @@ class Triples(BaseSDK):
         :param index_id: Filter by index ID
         :param subject_entity_id: Filter by subject entity ID
         :param object_entity_id: Filter by object entity ID
-        :param predicate: Filter by predicate (can be repeated for multiple predicates)
+        :param predicate: Filter by predicates
         :param offset: Number of results to skip for pagination
         :param limit: Maximum number of results
         :param retries: Override the default retry configuration for this method
@@ -141,9 +141,7 @@ class Triples(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.QueryTriplesResponse(
-                result=unmarshal_json_response(
-                    models.QueryTriplesResponseBody, http_res
-                ),
+                result=unmarshal_json_response(models.TriplesListResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -174,7 +172,7 @@ class Triples(BaseSDK):
         index_id: Optional[str] = None,
         subject_entity_id: Optional[str] = None,
         object_entity_id: Optional[str] = None,
-        predicate: Optional[str] = None,
+        predicate: Optional[List[str]] = None,
         offset: Optional[int] = 0,
         limit: Optional[int] = 50,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -192,7 +190,7 @@ class Triples(BaseSDK):
         :param index_id: Filter by index ID
         :param subject_entity_id: Filter by subject entity ID
         :param object_entity_id: Filter by object entity ID
-        :param predicate: Filter by predicate (can be repeated for multiple predicates)
+        :param predicate: Filter by predicates
         :param offset: Number of results to skip for pagination
         :param limit: Maximum number of results
         :param retries: Override the default retry configuration for this method
@@ -296,9 +294,7 @@ class Triples(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.QueryTriplesResponse(
-                result=unmarshal_json_response(
-                    models.QueryTriplesResponseBody, http_res
-                ),
+                result=unmarshal_json_response(models.TriplesListResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -770,7 +766,7 @@ class Triples(BaseSDK):
         self,
         *,
         id: Optional[str] = None,
-        ids: Optional[str] = None,
+        ids: Optional[List[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -781,7 +777,7 @@ class Triples(BaseSDK):
         Delete one or more triples by ID
 
         :param id: Single triple ID to delete
-        :param ids: Comma-separated list of triple IDs for batch delete
+        :param ids: Array of triple IDs for batch delete
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -868,7 +864,7 @@ class Triples(BaseSDK):
         self,
         *,
         id: Optional[str] = None,
-        ids: Optional[str] = None,
+        ids: Optional[List[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -879,7 +875,7 @@ class Triples(BaseSDK):
         Delete one or more triples by ID
 
         :param id: Single triple ID to delete
-        :param ids: Comma-separated list of triple IDs for batch delete
+        :param ids: Array of triple IDs for batch delete
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

@@ -1,5 +1,7 @@
 # SemanticSearchCount
 
+Count of search results by type
+
 
 ## Fields
 

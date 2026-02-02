@@ -1,6 +1,6 @@
-# GetGraphResponse
+# GraphResponse
 
-Successful response
+Response containing a single graph
 
 
 ## Fields

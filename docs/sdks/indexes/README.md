@@ -88,7 +88,7 @@ with Neode(
 
 ### Response
 
-**[models.CreateIndexResponse](../../models/createindexresponse.md)**
+**[models.IndexResponse](../../models/indexresponse.md)**
 
 ### Errors
 

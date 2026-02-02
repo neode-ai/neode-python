@@ -1,4 +1,4 @@
-# SemanticSearchEntity
+# SemanticSearchDataEntity
 
 An entity representing a subject or object in the knowledge graph
 

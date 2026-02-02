@@ -116,9 +116,9 @@ class Generation(BaseSDK):
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "402", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentRequiredErrorData, http_res
+                errors.InsufficientCreditsErrorData, http_res
             )
-            raise errors.PaymentRequiredError(response_data, http_res)
+            raise errors.InsufficientCreditsError(response_data, http_res)
         if utils.match_response(http_res, "500", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -239,9 +239,9 @@ class Generation(BaseSDK):
             raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "402", "application/json"):
             response_data = unmarshal_json_response(
-                errors.PaymentRequiredErrorData, http_res
+                errors.InsufficientCreditsErrorData, http_res
             )
-            raise errors.PaymentRequiredError(response_data, http_res)
+            raise errors.InsufficientCreditsError(response_data, http_res)
         if utils.match_response(http_res, "500", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

@@ -1,4 +1,6 @@
-# Type
+# SearchType
+
+Type of object to search for
 
 
 ## Values

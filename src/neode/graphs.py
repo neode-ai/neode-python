@@ -117,7 +117,7 @@ class Graphs(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.ListGraphsResponse(
-                result=unmarshal_json_response(models.ListGraphsResponseBody, http_res),
+                result=unmarshal_json_response(models.GraphsListResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -246,7 +246,7 @@ class Graphs(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.ListGraphsResponse(
-                result=unmarshal_json_response(models.ListGraphsResponseBody, http_res),
+                result=unmarshal_json_response(models.GraphsListResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -281,7 +281,7 @@ class Graphs(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreateGraphResponse:
+    ) -> models.GraphResponse:
         r"""Create a graph
 
         Create a new graph to organize triples
@@ -359,7 +359,7 @@ class Graphs(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreateGraphResponse, http_res)
+            return unmarshal_json_response(models.GraphResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -392,7 +392,7 @@ class Graphs(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreateGraphResponse:
+    ) -> models.GraphResponse:
         r"""Create a graph
 
         Create a new graph to organize triples
@@ -470,7 +470,7 @@ class Graphs(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreateGraphResponse, http_res)
+            return unmarshal_json_response(models.GraphResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -498,7 +498,7 @@ class Graphs(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetGraphResponse:
+    ) -> models.GraphResponse:
         r"""Get a graph
 
         Get a specific graph by ID with triple count
@@ -565,7 +565,7 @@ class Graphs(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetGraphResponse, http_res)
+            return unmarshal_json_response(models.GraphResponse, http_res)
         if utils.match_response(http_res, "404", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -593,7 +593,7 @@ class Graphs(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetGraphResponse:
+    ) -> models.GraphResponse:
         r"""Get a graph
 
         Get a specific graph by ID with triple count
@@ -660,7 +660,7 @@ class Graphs(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetGraphResponse, http_res)
+            return unmarshal_json_response(models.GraphResponse, http_res)
         if utils.match_response(http_res, "404", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

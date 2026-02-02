@@ -1,6 +1,6 @@
 # UpdateTripleResponse
 
-Successfully updated
+Response from updating a triple
 
 
 ## Fields

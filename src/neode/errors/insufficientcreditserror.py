@@ -8,7 +8,7 @@ from neode.types import BaseModel
 from typing import Optional
 
 
-class PaymentRequiredErrorData(BaseModel):
+class InsufficientCreditsErrorData(BaseModel):
     success: Optional[bool] = None
     error: Optional[str] = None
     balance_cents: Optional[int] = None
@@ -17,14 +17,14 @@ class PaymentRequiredErrorData(BaseModel):
 
 
 @dataclass(unsafe_hash=True)
-class PaymentRequiredError(NeodeError):
-    r"""Insufficient credits"""
+class InsufficientCreditsError(NeodeError):
+    r"""Error returned when user has insufficient credits"""
 
-    data: PaymentRequiredErrorData = field(hash=False)
+    data: InsufficientCreditsErrorData = field(hash=False)
 
     def __init__(
         self,
-        data: PaymentRequiredErrorData,
+        data: InsufficientCreditsErrorData,
         raw_response: httpx.Response,
         body: Optional[str] = None,
     ):

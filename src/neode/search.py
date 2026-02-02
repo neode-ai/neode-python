@@ -17,7 +17,7 @@ class Search(BaseSDK):
         self,
         *,
         q: str,
-        types: Optional[str] = "entities,triples",
+        types: Optional[List[models.SearchType]] = None,
         index_id: Optional[str] = None,
         offset: Optional[int] = 0,
         limit: Optional[int] = 20,
@@ -32,7 +32,7 @@ class Search(BaseSDK):
         Search across entities, triples, and graphs using natural language. Uses vector embeddings for semantic similarity matching.
 
         :param q: Natural language search query
-        :param types: Comma-separated types to search (entities,triples,graphs)
+        :param types: Types to search
         :param index_id: Filter results to a specific index
         :param offset: Number of results to skip for pagination
         :param limit: Maximum results per type (default 20, max 100)
@@ -129,9 +129,7 @@ class Search(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.SemanticSearchGetResponse(
-                result=unmarshal_json_response(
-                    models.SemanticSearchGetResponseBody, http_res
-                ),
+                result=unmarshal_json_response(models.SemanticSearchResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -157,7 +155,7 @@ class Search(BaseSDK):
         self,
         *,
         q: str,
-        types: Optional[str] = "entities,triples",
+        types: Optional[List[models.SearchType]] = None,
         index_id: Optional[str] = None,
         offset: Optional[int] = 0,
         limit: Optional[int] = 20,
@@ -172,7 +170,7 @@ class Search(BaseSDK):
         Search across entities, triples, and graphs using natural language. Uses vector embeddings for semantic similarity matching.
 
         :param q: Natural language search query
-        :param types: Comma-separated types to search (entities,triples,graphs)
+        :param types: Types to search
         :param index_id: Filter results to a specific index
         :param offset: Number of results to skip for pagination
         :param limit: Maximum results per type (default 20, max 100)
@@ -272,9 +270,7 @@ class Search(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.SemanticSearchGetResponse(
-                result=unmarshal_json_response(
-                    models.SemanticSearchGetResponseBody, http_res
-                ),
+                result=unmarshal_json_response(models.SemanticSearchResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -300,7 +296,7 @@ class Search(BaseSDK):
         self,
         *,
         query: str,
-        types: Optional[List[models.Type]] = None,
+        types: Optional[List[models.SearchType]] = None,
         index_id: Optional[str] = None,
         limit: Optional[int] = 20,
         threshold: Optional[float] = 0.3,
@@ -410,7 +406,7 @@ class Search(BaseSDK):
         self,
         *,
         query: str,
-        types: Optional[List[models.Type]] = None,
+        types: Optional[List[models.SearchType]] = None,
         index_id: Optional[str] = None,
         limit: Optional[int] = 20,
         threshold: Optional[float] = 0.3,

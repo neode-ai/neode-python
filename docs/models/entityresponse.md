@@ -1,6 +1,6 @@
-# UpdateEntityResponse
+# EntityResponse
 
-Successfully updated
+Response containing a single entity
 
 
 ## Fields

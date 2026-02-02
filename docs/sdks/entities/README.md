@@ -94,7 +94,7 @@ with Neode(
 
 ### Response
 
-**[models.CreateEntityResponse](../../models/createentityresponse.md)**
+**[models.EntityResponse](../../models/entityresponse.md)**
 
 ### Errors
 
@@ -136,7 +136,7 @@ with Neode(
 
 ### Response
 
-**[models.GetEntityResponse](../../models/getentityresponse.md)**
+**[models.EntityResponse](../../models/entityresponse.md)**
 
 ### Errors
 
@@ -182,7 +182,7 @@ with Neode(
 
 ### Response
 
-**[models.UpdateEntityResponse](../../models/updateentityresponse.md)**
+**[models.EntityResponse](../../models/entityresponse.md)**
 
 ### Errors
 

@@ -117,9 +117,7 @@ class Indexes(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.ListIndexesResponse(
-                result=unmarshal_json_response(
-                    models.ListIndexesResponseBody, http_res
-                ),
+                result=unmarshal_json_response(models.IndexesListResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -248,9 +246,7 @@ class Indexes(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return models.ListIndexesResponse(
-                result=unmarshal_json_response(
-                    models.ListIndexesResponseBody, http_res
-                ),
+                result=unmarshal_json_response(models.IndexesListResponse, http_res),
                 next=next_func,
             )
         if utils.match_response(http_res, "400", "application/json"):
@@ -281,7 +277,7 @@ class Indexes(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreateIndexResponse:
+    ) -> models.IndexResponse:
         r"""Create an index
 
         Create a new index to organize entities
@@ -353,7 +349,7 @@ class Indexes(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreateIndexResponse, http_res)
+            return unmarshal_json_response(models.IndexResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)
@@ -382,7 +378,7 @@ class Indexes(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreateIndexResponse:
+    ) -> models.IndexResponse:
         r"""Create an index
 
         Create a new index to organize entities
@@ -454,7 +450,7 @@ class Indexes(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreateIndexResponse, http_res)
+            return unmarshal_json_response(models.IndexResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(errors.ErrorData, http_res)
             raise errors.Error(response_data, http_res)

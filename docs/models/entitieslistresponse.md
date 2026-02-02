@@ -1,6 +1,6 @@
-# QueryTriplesResponseBody
+# EntitiesListResponse
 
-Successful response
+Response containing a list of entities
 
 
 ## Fields
@@ -8,5 +8,5 @@ Successful response
 | Field                                      | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | `success`                                  | *Optional[bool]*                           | :heavy_minus_sign:                         | N/A                                        |
-| `data`                                     | List[[models.Triple](../models/triple.md)] | :heavy_minus_sign:                         | N/A                                        |
+| `data`                                     | List[[models.Entity](../models/entity.md)] | :heavy_minus_sign:                         | N/A                                        |
 | `count`                                    | *Optional[int]*                            | :heavy_minus_sign:                         | N/A                                        |

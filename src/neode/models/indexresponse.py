@@ -8,16 +8,16 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class CreateIndexResponseTypedDict(TypedDict):
-    r"""Successfully created"""
+class IndexResponseTypedDict(TypedDict):
+    r"""Response containing a single index"""
 
     success: NotRequired[bool]
     data: NotRequired[IndexTypedDict]
     r"""An index for organizing and disambiguating entities"""
 
 
-class CreateIndexResponse(BaseModel):
-    r"""Successfully created"""
+class IndexResponse(BaseModel):
+    r"""Response containing a single index"""
 
     success: Optional[bool] = None
 

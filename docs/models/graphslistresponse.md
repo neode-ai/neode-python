@@ -1,6 +1,6 @@
-# ListGraphsResponseBody
+# GraphsListResponse
 
-Successful response
+Response containing a list of graphs
 
 
 ## Fields

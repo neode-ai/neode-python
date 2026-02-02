@@ -25,7 +25,9 @@ with Neode(
     bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
 ) as n_client:
 
-    res = n_client.search.semantic_get(q="<value>", types="entities,triples", offset=0, limit=20, threshold=0.3)
+    res = n_client.search.semantic_get(q="<value>", types=[
+
+    ], offset=0, limit=20, threshold=0.3)
 
     while res is not None:
         # Handle items
@@ -39,7 +41,7 @@ with Neode(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `q`                                                                 | *str*                                                               | :heavy_check_mark:                                                  | Natural language search query                                       |
-| `types`                                                             | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Comma-separated types to search (entities,triples,graphs)           |
+| `types`                                                             | List[[models.SearchType](../../models/searchtype.md)]               | :heavy_minus_sign:                                                  | Types to search                                                     |
 | `index_id`                                                          | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter results to a specific index                                  |
 | `offset`                                                            | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Number of results to skip for pagination                            |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Maximum results per type (default 20, max 100)                      |
@@ -89,7 +91,7 @@ with Neode(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `query`                                                             | *str*                                                               | :heavy_check_mark:                                                  | Natural language search query                                       |
-| `types`                                                             | List[[models.Type](../../models/type.md)]                           | :heavy_minus_sign:                                                  | Types of objects to search                                          |
+| `types`                                                             | List[[models.SearchType](../../models/searchtype.md)]               | :heavy_minus_sign:                                                  | Types of objects to search                                          |
 | `index_id`                                                          | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter results to a specific index                                  |
 | `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Maximum results per type                                            |
 | `threshold`                                                         | *Optional[float]*                                                   | :heavy_minus_sign:                                                  | Minimum similarity score (0-1)                                      |

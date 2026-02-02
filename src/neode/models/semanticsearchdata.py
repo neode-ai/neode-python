@@ -8,7 +8,7 @@ from typing import List, Literal, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class SemanticSearchEntityTypedDict(TypedDict):
+class SemanticSearchDataEntityTypedDict(TypedDict):
     r"""An entity representing a subject or object in the knowledge graph"""
 
     id: NotRequired[str]
@@ -26,7 +26,7 @@ class SemanticSearchEntityTypedDict(TypedDict):
     r"""Number of related triples"""
 
 
-class SemanticSearchEntity(BaseModel):
+class SemanticSearchDataEntity(BaseModel):
     r"""An entity representing a subject or object in the knowledge graph"""
 
     id: Optional[str] = None
@@ -82,14 +82,14 @@ class SemanticSearchEntity(BaseModel):
         return m
 
 
-SemanticSearchObjectType = Literal[
+SemanticSearchDataObjectType = Literal[
     "literal",
     "entity",
 ]
 r"""'literal' for values (dates, numbers, text), 'entity' for references to other entities"""
 
 
-class SemanticSearchTripleTypedDict(TypedDict):
+class SemanticSearchDataTripleTypedDict(TypedDict):
     r"""A knowledge triple representing a fact as subject-predicate-object"""
 
     subject: str
@@ -98,7 +98,7 @@ class SemanticSearchTripleTypedDict(TypedDict):
     r"""The relationship type (e.g., 'founded', 'located_in', 'born_on')"""
     object: str
     r"""The object value or entity (e.g., 'SpaceX', '2003', 'Austin, Texas')"""
-    object_type: SemanticSearchObjectType
+    object_type: SemanticSearchDataObjectType
     r"""'literal' for values (dates, numbers, text), 'entity' for references to other entities"""
     id: NotRequired[str]
     r"""Unique identifier"""
@@ -119,7 +119,7 @@ class SemanticSearchTripleTypedDict(TypedDict):
     r"""Similarity score (0-1)"""
 
 
-class SemanticSearchTriple(BaseModel):
+class SemanticSearchDataTriple(BaseModel):
     r"""A knowledge triple representing a fact as subject-predicate-object"""
 
     subject: str
@@ -131,7 +131,7 @@ class SemanticSearchTriple(BaseModel):
     object: str
     r"""The object value or entity (e.g., 'SpaceX', '2003', 'Austin, Texas')"""
 
-    object_type: SemanticSearchObjectType
+    object_type: SemanticSearchDataObjectType
     r"""'literal' for values (dates, numbers, text), 'entity' for references to other entities"""
 
     id: Optional[str] = None
@@ -189,22 +189,22 @@ class SemanticSearchTriple(BaseModel):
         return m
 
 
-class SemanticSearchMetadataTypedDict(TypedDict):
+class SemanticSearchDataMetadataTypedDict(TypedDict):
     pass
 
 
-class SemanticSearchMetadata(BaseModel):
+class SemanticSearchDataMetadata(BaseModel):
     pass
 
 
-class SemanticSearchGraphTypedDict(TypedDict):
+class SemanticSearchDataGraphTypedDict(TypedDict):
     r"""A graph organizing related triples"""
 
     id: NotRequired[str]
     name: NotRequired[str]
     description: NotRequired[str]
     index_id: NotRequired[str]
-    metadata: NotRequired[SemanticSearchMetadataTypedDict]
+    metadata: NotRequired[SemanticSearchDataMetadataTypedDict]
     triple_count: NotRequired[int]
     created_at: NotRequired[datetime]
     updated_at: NotRequired[datetime]
@@ -212,7 +212,7 @@ class SemanticSearchGraphTypedDict(TypedDict):
     r"""Similarity score (0-1)"""
 
 
-class SemanticSearchGraph(BaseModel):
+class SemanticSearchDataGraph(BaseModel):
     r"""A graph organizing related triples"""
 
     id: Optional[str] = None
@@ -223,7 +223,7 @@ class SemanticSearchGraph(BaseModel):
 
     index_id: Optional[str] = None
 
-    metadata: Optional[SemanticSearchMetadata] = None
+    metadata: Optional[SemanticSearchDataMetadata] = None
 
     triple_count: Optional[int] = None
 
@@ -264,85 +264,25 @@ class SemanticSearchGraph(BaseModel):
 
 
 class SemanticSearchDataTypedDict(TypedDict):
-    entities: NotRequired[List[SemanticSearchEntityTypedDict]]
-    triples: NotRequired[List[SemanticSearchTripleTypedDict]]
-    graphs: NotRequired[List[SemanticSearchGraphTypedDict]]
+    r"""Search results data containing entities, triples, and graphs"""
+
+    entities: NotRequired[List[SemanticSearchDataEntityTypedDict]]
+    triples: NotRequired[List[SemanticSearchDataTripleTypedDict]]
+    graphs: NotRequired[List[SemanticSearchDataGraphTypedDict]]
 
 
 class SemanticSearchData(BaseModel):
-    entities: Optional[List[SemanticSearchEntity]] = None
+    r"""Search results data containing entities, triples, and graphs"""
 
-    triples: Optional[List[SemanticSearchTriple]] = None
+    entities: Optional[List[SemanticSearchDataEntity]] = None
 
-    graphs: Optional[List[SemanticSearchGraph]] = None
+    triples: Optional[List[SemanticSearchDataTriple]] = None
 
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["entities", "triples", "graphs"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k)
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class SemanticSearchCountTypedDict(TypedDict):
-    entities: NotRequired[int]
-    triples: NotRequired[int]
-    graphs: NotRequired[int]
-
-
-class SemanticSearchCount(BaseModel):
-    entities: Optional[int] = None
-
-    triples: Optional[int] = None
-
-    graphs: Optional[int] = None
+    graphs: Optional[List[SemanticSearchDataGraph]] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(["entities", "triples", "graphs"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k)
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class SemanticSearchResponseTypedDict(TypedDict):
-    r"""Search results"""
-
-    success: NotRequired[bool]
-    data: NotRequired[SemanticSearchDataTypedDict]
-    count: NotRequired[SemanticSearchCountTypedDict]
-
-
-class SemanticSearchResponse(BaseModel):
-    r"""Search results"""
-
-    success: Optional[bool] = None
-
-    data: Optional[SemanticSearchData] = None
-
-    count: Optional[SemanticSearchCount] = None
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(["success", "data", "count"])
         serialized = handler(self)
         m = {}
 

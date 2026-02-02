@@ -1,6 +1,6 @@
-# CreateIndexResponse
+# IndexResponse
 
-Successfully created
+Response containing a single index
 
 
 ## Fields

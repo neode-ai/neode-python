@@ -1,6 +1,6 @@
 # DeleteTriplesResponse
 
-Successfully deleted
+Response from deleting triples
 
 
 ## Fields

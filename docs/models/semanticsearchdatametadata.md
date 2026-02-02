@@ -1,4 +1,4 @@
-# SemanticSearchMetadata
+# SemanticSearchDataMetadata
 
 
 ## Fields

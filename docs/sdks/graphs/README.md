@@ -92,7 +92,7 @@ with Neode(
 
 ### Response
 
-**[models.CreateGraphResponse](../../models/creategraphresponse.md)**
+**[models.GraphResponse](../../models/graphresponse.md)**
 
 ### Errors
 
@@ -134,7 +134,7 @@ with Neode(
 
 ### Response
 
-**[models.GetGraphResponse](../../models/getgraphresponse.md)**
+**[models.GraphResponse](../../models/graphresponse.md)**
 
 ### Errors
 

@@ -1,6 +1,6 @@
-# ListIndexesResponseBody
+# IndexesListResponse
 
-Successful response
+Response containing a list of indexes
 
 
 ## Fields

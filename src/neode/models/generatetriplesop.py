@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 from .generaterequest import GenerateRequest, GenerateRequestTypedDict
-from .triple import Triple, TripleTypedDict
 from neode.types import BaseModel, UNSET_SENTINEL
 from neode.utils import FieldMetadata, QueryParamMetadata, RequestMetadata
 import pydantic
 from pydantic import model_serializer
-from typing import List, Literal, Optional
+from typing import Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
@@ -40,64 +39,6 @@ class GenerateTriplesRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(["format"])
-        serialized = handler(self)
-        m = {}
-
-        for n, f in type(self).model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k)
-
-            if val != UNSET_SENTINEL:
-                if val is not None or k not in optional_fields:
-                    m[k] = val
-
-        return m
-
-
-class GenerateTriplesResponseTypedDict(TypedDict):
-    r"""Generated triples (streaming or JSON based on format parameter)"""
-
-    success: NotRequired[bool]
-    data: NotRequired[List[TripleTypedDict]]
-    count: NotRequired[int]
-    provider: NotRequired[str]
-    r"""AI provider used (openai)"""
-    credits_used: NotRequired[int]
-    r"""Credits deducted for generation"""
-    balance_remaining: NotRequired[int]
-    r"""Remaining credit balance"""
-
-
-class GenerateTriplesResponse(BaseModel):
-    r"""Generated triples (streaming or JSON based on format parameter)"""
-
-    success: Optional[bool] = None
-
-    data: Optional[List[Triple]] = None
-
-    count: Optional[int] = None
-
-    provider: Optional[str] = None
-    r"""AI provider used (openai)"""
-
-    credits_used: Optional[int] = None
-    r"""Credits deducted for generation"""
-
-    balance_remaining: Optional[int] = None
-    r"""Remaining credit balance"""
-
-    @model_serializer(mode="wrap")
-    def serialize_model(self, handler):
-        optional_fields = set(
-            [
-                "success",
-                "data",
-                "count",
-                "provider",
-                "credits_used",
-                "balance_remaining",
-            ]
-        )
         serialized = handler(self)
         m = {}
 

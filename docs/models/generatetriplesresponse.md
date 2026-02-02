@@ -1,6 +1,6 @@
 # GenerateTriplesResponse
 
-Generated triples (streaming or JSON based on format parameter)
+Response from generating triples with AI
 
 
 ## Fields

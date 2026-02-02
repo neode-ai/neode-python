@@ -1,4 +1,4 @@
-# SemanticSearchObjectType
+# SemanticSearchDataObjectType
 
 'literal' for values (dates, numbers, text), 'entity' for references to other entities
 

@@ -436,7 +436,7 @@ with Neode(
 
 
 **Inherit from [`NeodeError`](./src/neode/errors/neodeerror.py)**:
-* [`PaymentRequiredError`](./src/neode/errors/paymentrequirederror.py): Insufficient credits. Status code `402`. Applicable to 1 of 18 methods.*
+* [`InsufficientCreditsError`](./src/neode/errors/insufficientcreditserror.py): Error returned when user has insufficient credits. Status code `402`. Applicable to 1 of 18 methods.*
 * [`ResponseValidationError`](./src/neode/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

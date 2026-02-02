@@ -1,10 +1,12 @@
 # SemanticSearchData
 
+Search results data containing entities, triples, and graphs
+
 
 ## Fields
 
-| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `entities`                                                             | List[[models.SemanticSearchEntity](../models/semanticsearchentity.md)] | :heavy_minus_sign:                                                     | N/A                                                                    |
-| `triples`                                                              | List[[models.SemanticSearchTriple](../models/semanticsearchtriple.md)] | :heavy_minus_sign:                                                     | N/A                                                                    |
-| `graphs`                                                               | List[[models.SemanticSearchGraph](../models/semanticsearchgraph.md)]   | :heavy_minus_sign:                                                     | N/A                                                                    |
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `entities`                                                                     | List[[models.SemanticSearchDataEntity](../models/semanticsearchdataentity.md)] | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `triples`                                                                      | List[[models.SemanticSearchDataTriple](../models/semanticsearchdatatriple.md)] | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `graphs`                                                                       | List[[models.SemanticSearchDataGraph](../models/semanticsearchdatagraph.md)]   | :heavy_minus_sign:                                                             | N/A                                                                            |

@@ -1,6 +1,6 @@
-# PaymentRequiredError
+# InsufficientCreditsError
 
-Insufficient credits
+Error returned when user has insufficient credits
 
 
 ## Fields

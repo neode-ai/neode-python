@@ -8,7 +8,10 @@ import sys
 
 if TYPE_CHECKING:
     from .error import Error, ErrorData
-    from .generatetriplesop import PaymentRequiredError, PaymentRequiredErrorData
+    from .insufficientcreditserror import (
+        InsufficientCreditsError,
+        InsufficientCreditsErrorData,
+    )
     from .neodedefaulterror import NeodeDefaultError
     from .no_response_error import NoResponseError
     from .responsevalidationerror import ResponseValidationError
@@ -16,19 +19,19 @@ if TYPE_CHECKING:
 __all__ = [
     "Error",
     "ErrorData",
+    "InsufficientCreditsError",
+    "InsufficientCreditsErrorData",
     "NeodeDefaultError",
     "NeodeError",
     "NoResponseError",
-    "PaymentRequiredError",
-    "PaymentRequiredErrorData",
     "ResponseValidationError",
 ]
 
 _dynamic_imports: dict[str, str] = {
     "Error": ".error",
     "ErrorData": ".error",
-    "PaymentRequiredError": ".generatetriplesop",
-    "PaymentRequiredErrorData": ".generatetriplesop",
+    "InsufficientCreditsError": ".insufficientcreditserror",
+    "InsufficientCreditsErrorData": ".insufficientcreditserror",
     "NeodeDefaultError": ".neodedefaulterror",
     "NoResponseError": ".no_response_error",
     "ResponseValidationError": ".responsevalidationerror",

@@ -50,9 +50,9 @@ with Neode(
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.Error                | 400                         | application/json            |
-| errors.PaymentRequiredError | 402                         | application/json            |
-| errors.Error                | 500                         | application/json            |
-| errors.NeodeDefaultError    | 4XX, 5XX                    | \*/\*                       |
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| errors.Error                    | 400                             | application/json                |
+| errors.InsufficientCreditsError | 402                             | application/json                |
+| errors.Error                    | 500                             | application/json                |
+| errors.NeodeDefaultError        | 4XX, 5XX                        | \*/\*                           |
