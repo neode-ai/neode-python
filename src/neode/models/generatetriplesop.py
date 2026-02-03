@@ -11,16 +11,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 Format = Literal[
-    "stream",
     "json",
+    "stream",
 ]
-r"""Response format. Use 'json' for non-streaming response suitable for tool use."""
+r"""Response format. 'json' returns a standard JSON response (default, recommended for SDKs). 'stream' returns a Vercel AI SDK data stream for chat UIs."""
 
 
 class GenerateTriplesRequestTypedDict(TypedDict):
     body: GenerateRequestTypedDict
     format_: NotRequired[Format]
-    r"""Response format. Use 'json' for non-streaming response suitable for tool use."""
+    r"""Response format. 'json' returns a standard JSON response (default, recommended for SDKs). 'stream' returns a Vercel AI SDK data stream for chat UIs."""
 
 
 class GenerateTriplesRequest(BaseModel):
@@ -33,8 +33,8 @@ class GenerateTriplesRequest(BaseModel):
         Optional[Format],
         pydantic.Field(alias="format"),
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
-    ] = "stream"
-    r"""Response format. Use 'json' for non-streaming response suitable for tool use."""
+    ] = "json"
+    r"""Response format. 'json' returns a standard JSON response (default, recommended for SDKs). 'stream' returns a Vercel AI SDK data stream for chat UIs."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

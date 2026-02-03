@@ -17,7 +17,7 @@ class Generation(BaseSDK):
         *,
         query: str,
         index_id: str,
-        format_: Optional[models.Format] = "stream",
+        format_: Optional[models.Format] = "json",
         graph_id: Optional[str] = None,
         web_search: Optional[bool] = True,
         triple_count: Optional[int] = 10,
@@ -33,7 +33,7 @@ class Generation(BaseSDK):
 
         :param query: Natural language description of what to extract triples about
         :param index_id: Index for entity disambiguation (required)
-        :param format_: Response format. Use 'json' for non-streaming response suitable for tool use.
+        :param format_: Response format. 'json' returns a standard JSON response (default, recommended for SDKs). 'stream' returns a Vercel AI SDK data stream for chat UIs.
         :param graph_id: Graph to store generated triples in
         :param web_search: Enable web search for real-time information
         :param triple_count: Target number of triples to generate (approximate)
@@ -140,7 +140,7 @@ class Generation(BaseSDK):
         *,
         query: str,
         index_id: str,
-        format_: Optional[models.Format] = "stream",
+        format_: Optional[models.Format] = "json",
         graph_id: Optional[str] = None,
         web_search: Optional[bool] = True,
         triple_count: Optional[int] = 10,
@@ -156,7 +156,7 @@ class Generation(BaseSDK):
 
         :param query: Natural language description of what to extract triples about
         :param index_id: Index for entity disambiguation (required)
-        :param format_: Response format. Use 'json' for non-streaming response suitable for tool use.
+        :param format_: Response format. 'json' returns a standard JSON response (default, recommended for SDKs). 'stream' returns a Vercel AI SDK data stream for chat UIs.
         :param graph_id: Graph to store generated triples in
         :param web_search: Enable web search for real-time information
         :param triple_count: Target number of triples to generate (approximate)
