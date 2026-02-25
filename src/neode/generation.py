@@ -22,6 +22,9 @@ class Generation(BaseSDK):
         web_search: Optional[bool] = True,
         triple_count: Optional[int] = 10,
         predicates: Optional[List[str]] = None,
+        subject_entity: Optional[str] = None,
+        rules: Optional[str] = None,
+        news_search: Optional[bool] = False,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -38,6 +41,9 @@ class Generation(BaseSDK):
         :param web_search: Enable web search for real-time information
         :param triple_count: Target number of triples to generate (approximate)
         :param predicates: Restrict to specific predicate types
+        :param subject_entity: Constrain all generated triples to use this exact subject
+        :param rules: Custom rules or instructions for the AI generation
+        :param news_search: Enable news-specific search for recent events
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -62,6 +68,9 @@ class Generation(BaseSDK):
                 web_search=web_search,
                 triple_count=triple_count,
                 predicates=predicates,
+                subject_entity=subject_entity,
+                rules=rules,
+                news_search=news_search,
             ),
         )
 
@@ -145,6 +154,9 @@ class Generation(BaseSDK):
         web_search: Optional[bool] = True,
         triple_count: Optional[int] = 10,
         predicates: Optional[List[str]] = None,
+        subject_entity: Optional[str] = None,
+        rules: Optional[str] = None,
+        news_search: Optional[bool] = False,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -161,6 +173,9 @@ class Generation(BaseSDK):
         :param web_search: Enable web search for real-time information
         :param triple_count: Target number of triples to generate (approximate)
         :param predicates: Restrict to specific predicate types
+        :param subject_entity: Constrain all generated triples to use this exact subject
+        :param rules: Custom rules or instructions for the AI generation
+        :param news_search: Enable news-specific search for recent events
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -185,6 +200,9 @@ class Generation(BaseSDK):
                 web_search=web_search,
                 triple_count=triple_count,
                 predicates=predicates,
+                subject_entity=subject_entity,
+                rules=rules,
+                news_search=news_search,
             ),
         )
 

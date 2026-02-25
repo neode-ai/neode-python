@@ -22,6 +22,12 @@ class GenerateRequestTypedDict(TypedDict):
     r"""Target number of triples to generate (approximate)"""
     predicates: NotRequired[List[str]]
     r"""Restrict to specific predicate types"""
+    subject_entity: NotRequired[str]
+    r"""Constrain all generated triples to use this exact subject"""
+    rules: NotRequired[str]
+    r"""Custom rules or instructions for the AI generation"""
+    news_search: NotRequired[bool]
+    r"""Enable news-specific search for recent events"""
 
 
 class GenerateRequest(BaseModel):
@@ -45,9 +51,28 @@ class GenerateRequest(BaseModel):
     predicates: Optional[List[str]] = None
     r"""Restrict to specific predicate types"""
 
+    subject_entity: Optional[str] = None
+    r"""Constrain all generated triples to use this exact subject"""
+
+    rules: Optional[str] = None
+    r"""Custom rules or instructions for the AI generation"""
+
+    news_search: Optional[bool] = False
+    r"""Enable news-specific search for recent events"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["graph_id", "web_search", "triple_count", "predicates"])
+        optional_fields = set(
+            [
+                "graph_id",
+                "web_search",
+                "triple_count",
+                "predicates",
+                "subject_entity",
+                "rules",
+                "news_search",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

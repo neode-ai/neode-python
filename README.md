@@ -274,12 +274,16 @@ with Neode(
 * [list_all](docs/sdks/graphs/README.md#list_all) - List graphs
 * [create](docs/sdks/graphs/README.md#create) - Create a graph
 * [get](docs/sdks/graphs/README.md#get) - Get a graph
+* [update](docs/sdks/graphs/README.md#update) - Update a graph
 * [delete](docs/sdks/graphs/README.md#delete) - Delete a graph
 
 ### [Indexes](docs/sdks/indexes/README.md)
 
 * [list](docs/sdks/indexes/README.md#list) - List indexes
 * [create](docs/sdks/indexes/README.md#create) - Create an index
+* [get](docs/sdks/indexes/README.md#get) - Get an index
+* [update](docs/sdks/indexes/README.md#update) - Update an index
+* [delete](docs/sdks/indexes/README.md#delete) - Delete an index
 
 ### [Search](docs/sdks/search/README.md)
 
@@ -436,7 +440,7 @@ with Neode(
 
 
 **Inherit from [`NeodeError`](./src/neode/errors/neodeerror.py)**:
-* [`InsufficientCreditsError`](./src/neode/errors/insufficientcreditserror.py): Error returned when user has insufficient credits. Status code `402`. Applicable to 1 of 18 methods.*
+* [`InsufficientCreditsError`](./src/neode/errors/insufficientcreditserror.py): Error returned when user has insufficient credits. Status code `402`. Applicable to 1 of 22 methods.*
 * [`ResponseValidationError`](./src/neode/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>

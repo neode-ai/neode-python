@@ -20,6 +20,8 @@ class GenerateTriplesResponseTypedDict(TypedDict):
     r"""Credits deducted for generation"""
     balance_remaining: NotRequired[int]
     r"""Remaining credit balance"""
+    auto_topup_triggered: NotRequired[bool]
+    r"""Whether auto top-up was triggered after this generation"""
 
 
 class GenerateTriplesResponse(BaseModel):
@@ -40,6 +42,9 @@ class GenerateTriplesResponse(BaseModel):
     balance_remaining: Optional[int] = None
     r"""Remaining credit balance"""
 
+    auto_topup_triggered: Optional[bool] = None
+    r"""Whether auto top-up was triggered after this generation"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -50,6 +55,7 @@ class GenerateTriplesResponse(BaseModel):
                 "provider",
                 "credits_used",
                 "balance_remaining",
+                "auto_topup_triggered",
             ]
         )
         serialized = handler(self)

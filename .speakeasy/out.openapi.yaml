@@ -440,6 +440,34 @@ paths:
         "404": {"$ref": "#/components/responses/NotFound"}
         "500": {"$ref": "#/components/responses/InternalError"}
       x-speakeasy-name-override: "get"
+    put:
+      tags:
+        - "Graphs"
+      summary: "Update a graph"
+      description: "Update an existing graph"
+      operationId: "updateGraph"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema: {"$ref": "#/components/schemas/GraphUpdate"}
+      responses:
+        "200":
+          description: "Successfully updated"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/GraphResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "update"
     delete:
       tags:
         - "Graphs"
@@ -524,6 +552,85 @@ paths:
         "400": {"$ref": "#/components/responses/BadRequest"}
         "500": {"$ref": "#/components/responses/InternalError"}
       x-speakeasy-name-override: "create"
+  "/api/indexes/{id}":
+    get:
+      tags:
+        - "Indexes"
+      summary: "Get an index"
+      description: "Get a specific index by ID with entity count"
+      operationId: "getIndex"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/IndexResponse"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "get"
+    put:
+      tags:
+        - "Indexes"
+      summary: "Update an index"
+      description: "Update an existing index"
+      operationId: "updateIndex"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema: {"$ref": "#/components/schemas/IndexUpdate"}
+      responses:
+        "200":
+          description: "Successfully updated"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/IndexResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "update"
+    delete:
+      tags:
+        - "Indexes"
+      summary: "Delete an index"
+      description: "Delete an index and optionally its entities"
+      operationId: "deleteIndex"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "deleteEntities"
+          in: "query"
+          description: "Also delete all entities in this index"
+          schema:
+            type: "boolean"
+            default: false
+      responses:
+        "200":
+          description: "Successfully deleted"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/SuccessMessage"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "delete"
   "/api/search":
     get:
       tags:
@@ -804,6 +911,12 @@ components:
         "index_id":
           type: "string"
           format: "uuid"
+        "parent_entity_id":
+          type:
+            - "string"
+            - "null"
+          format: "uuid"
+          description: "Parent entity ID for hierarchical organization"
     "Graph":
       type: "object"
       description: "A graph organizing related triples"
@@ -842,6 +955,19 @@ components:
           format: "uuid"
         "metadata":
           type: "object"
+    "GraphUpdate":
+      type: "object"
+      description: "Fields to update on a graph"
+      properties:
+        "name":
+          type: "string"
+        "description":
+          type: "string"
+        "index_id":
+          type: "string"
+          format: "uuid"
+        "metadata":
+          type: "object"
     "Index":
       type: "object"
       description: "An index for organizing and disambiguating entities"
@@ -855,6 +981,14 @@ components:
           type: "string"
         "is_public":
           type: "boolean"
+        "preferred_predicates":
+          type: "array"
+          items:
+            type: "string"
+          description: "Preferred predicate types for this index"
+        "rules":
+          type: "string"
+          description: "Custom rules or instructions for triple generation in this index"
         "item_count":
           type: "integer"
           description: "Number of entities in this index"
@@ -873,6 +1007,24 @@ components:
           type: "string"
         "description":
           type: "string"
+    "IndexUpdate":
+      type: "object"
+      description: "Fields to update on an index"
+      properties:
+        "name":
+          type: "string"
+        "description":
+          type: "string"
+        "is_public":
+          type: "boolean"
+        "preferred_predicates":
+          type: "array"
+          items:
+            type: "string"
+          description: "Preferred predicate types for this index"
+        "rules":
+          type: "string"
+          description: "Custom rules or instructions for triple generation in this index"
     "GenerateRequest":
       type: "object"
       required:
@@ -906,6 +1058,16 @@ components:
           items:
             type: "string"
           description: "Restrict to specific predicate types"
+        "subject_entity":
+          type: "string"
+          description: "Constrain all generated triples to use this exact subject"
+        "rules":
+          type: "string"
+          description: "Custom rules or instructions for the AI generation"
+        "news_search":
+          type: "boolean"
+          default: false
+          description: "Enable news-specific search for recent events"
     "SearchRequest":
       type: "object"
       required:
@@ -1011,6 +1173,9 @@ components:
         "balance_remaining":
           type: "integer"
           description: "Remaining credit balance"
+        "auto_topup_triggered":
+          type: "boolean"
+          description: "Whether auto top-up was triggered after this generation"
     "InsufficientCreditsError":
       type: "object"
       description: "Error returned when user has insufficient credits"

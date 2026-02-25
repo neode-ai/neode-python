@@ -161,3 +161,39 @@ actions:
       created_at: 1769598452237
       reviewed_at: 1769598465148
       type: method-name
+  - target: $["paths"]["/api/indexes/{id}"]["get"]
+    update:
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.indexes.get()
+      before: sdk.Indexes.getIndex()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/indexes/{id}"]["put"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.indexes.update()
+      before: sdk.Indexes.updateIndex()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/indexes/{id}"]["delete"]
+    update:
+      x-speakeasy-name-override: delete
+    x-speakeasy-metadata:
+      after: sdk.indexes.delete()
+      before: sdk.Indexes.deleteIndex()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name
+  - target: $["paths"]["/api/graphs/{id}"]["put"]
+    update:
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.graphs.update()
+      before: sdk.Graphs.updateGraph()
+      created_at: 1769598452237
+      reviewed_at: 1769598465148
+      type: method-name

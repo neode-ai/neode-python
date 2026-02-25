@@ -9,6 +9,7 @@ Organize triples into graphs
 * [list_all](#list_all) - List graphs
 * [create](#create) - Create a graph
 * [get](#get) - Get a graph
+* [update](#update) - Update a graph
 * [delete](#delete) - Delete a graph
 
 ## list_all
@@ -141,6 +142,52 @@ with Neode(
 | Error Type               | Status Code              | Content Type             |
 | ------------------------ | ------------------------ | ------------------------ |
 | errors.Error             | 404                      | application/json         |
+| errors.Error             | 500                      | application/json         |
+| errors.NeodeDefaultError | 4XX, 5XX                 | \*/\*                    |
+
+## update
+
+Update an existing graph
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="updateGraph" method="put" path="/api/graphs/{id}" -->
+```python
+from neode import Neode
+import os
+
+
+with Neode(
+    bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
+) as n_client:
+
+    res = n_client.graphs.update(id="5ffa3028-72a3-4980-9297-f42bc8b15f14")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `id`                                                                        | *str*                                                                       | :heavy_check_mark:                                                          | N/A                                                                         |
+| `name`                                                                      | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `description`                                                               | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `index_id`                                                                  | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `metadata`                                                                  | [Optional[models.GraphUpdateMetadata]](../../models/graphupdatemetadata.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
+
+### Response
+
+**[models.GraphResponse](../../models/graphresponse.md)**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| errors.Error             | 400, 404                 | application/json         |
 | errors.Error             | 500                      | application/json         |
 | errors.NeodeDefaultError | 4XX, 5XX                 | \*/\*                    |
 

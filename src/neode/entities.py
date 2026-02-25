@@ -690,6 +690,7 @@ class Entities(BaseSDK):
         description: Optional[str] = None,
         avatar_url: Optional[str] = None,
         index_id: Optional[str] = None,
+        parent_entity_id: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -704,6 +705,7 @@ class Entities(BaseSDK):
         :param description:
         :param avatar_url:
         :param index_id:
+        :param parent_entity_id: Parent entity ID for hierarchical organization
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -726,6 +728,7 @@ class Entities(BaseSDK):
                 description=description,
                 avatar_url=avatar_url,
                 index_id=index_id,
+                parent_entity_id=parent_entity_id,
             ),
         )
 
@@ -802,6 +805,7 @@ class Entities(BaseSDK):
         description: Optional[str] = None,
         avatar_url: Optional[str] = None,
         index_id: Optional[str] = None,
+        parent_entity_id: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -816,6 +820,7 @@ class Entities(BaseSDK):
         :param description:
         :param avatar_url:
         :param index_id:
+        :param parent_entity_id: Parent entity ID for hierarchical organization
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -838,6 +843,7 @@ class Entities(BaseSDK):
                 description=description,
                 avatar_url=avatar_url,
                 index_id=index_id,
+                parent_entity_id=parent_entity_id,
             ),
         )
 

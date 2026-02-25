@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     )
     from .deleteentityop import DeleteEntityRequest, DeleteEntityRequestTypedDict
     from .deletegraphop import DeleteGraphRequest, DeleteGraphRequestTypedDict
+    from .deleteindexop import DeleteIndexRequest, DeleteIndexRequestTypedDict
     from .deletetriplesop import DeleteTriplesRequest, DeleteTriplesRequestTypedDict
     from .deletetriplesresponse import (
         DeleteTriplesResponse,
@@ -37,6 +38,7 @@ if TYPE_CHECKING:
     )
     from .getentityop import GetEntityRequest, GetEntityRequestTypedDict
     from .getgraphop import GetGraphRequest, GetGraphRequestTypedDict
+    from .getindexop import GetIndexRequest, GetIndexRequestTypedDict
     from .graph import Graph, GraphMetadata, GraphMetadataTypedDict, GraphTypedDict
     from .graphcreate import (
         GraphCreate,
@@ -46,10 +48,17 @@ if TYPE_CHECKING:
     )
     from .graphresponse import GraphResponse, GraphResponseTypedDict
     from .graphslistresponse import GraphsListResponse, GraphsListResponseTypedDict
+    from .graphupdate import (
+        GraphUpdate,
+        GraphUpdateMetadata,
+        GraphUpdateMetadataTypedDict,
+        GraphUpdateTypedDict,
+    )
     from .index import Index, IndexTypedDict
     from .indexcreate import IndexCreate, IndexCreateTypedDict
     from .indexeslistresponse import IndexesListResponse, IndexesListResponseTypedDict
     from .indexresponse import IndexResponse, IndexResponseTypedDict
+    from .indexupdate import IndexUpdate, IndexUpdateTypedDict
     from .listentitiesop import (
         ListEntitiesRequest,
         ListEntitiesRequestTypedDict,
@@ -112,6 +121,8 @@ if TYPE_CHECKING:
     from .tripleslistresponse import TriplesListResponse, TriplesListResponseTypedDict
     from .tripleupdate import TripleUpdate, TripleUpdateTypedDict
     from .updateentityop import UpdateEntityRequest, UpdateEntityRequestTypedDict
+    from .updategraphop import UpdateGraphRequest, UpdateGraphRequestTypedDict
+    from .updateindexop import UpdateIndexRequest, UpdateIndexRequestTypedDict
     from .updatetripleresponse import (
         UpdateTripleResponse,
         UpdateTripleResponseTypedDict,
@@ -124,6 +135,8 @@ __all__ = [
     "DeleteEntityRequestTypedDict",
     "DeleteGraphRequest",
     "DeleteGraphRequestTypedDict",
+    "DeleteIndexRequest",
+    "DeleteIndexRequestTypedDict",
     "DeleteTriplesRequest",
     "DeleteTriplesRequestTypedDict",
     "DeleteTriplesResponse",
@@ -149,6 +162,8 @@ __all__ = [
     "GetEntityRequestTypedDict",
     "GetGraphRequest",
     "GetGraphRequestTypedDict",
+    "GetIndexRequest",
+    "GetIndexRequestTypedDict",
     "Graph",
     "GraphCreate",
     "GraphCreateMetadata",
@@ -159,6 +174,10 @@ __all__ = [
     "GraphResponse",
     "GraphResponseTypedDict",
     "GraphTypedDict",
+    "GraphUpdate",
+    "GraphUpdateMetadata",
+    "GraphUpdateMetadataTypedDict",
+    "GraphUpdateTypedDict",
     "GraphsListResponse",
     "GraphsListResponseTypedDict",
     "Index",
@@ -167,6 +186,8 @@ __all__ = [
     "IndexResponse",
     "IndexResponseTypedDict",
     "IndexTypedDict",
+    "IndexUpdate",
+    "IndexUpdateTypedDict",
     "IndexesListResponse",
     "IndexesListResponseTypedDict",
     "ListEntitiesRequest",
@@ -225,6 +246,10 @@ __all__ = [
     "TriplesListResponseTypedDict",
     "UpdateEntityRequest",
     "UpdateEntityRequestTypedDict",
+    "UpdateGraphRequest",
+    "UpdateGraphRequestTypedDict",
+    "UpdateIndexRequest",
+    "UpdateIndexRequestTypedDict",
     "UpdateTripleResponse",
     "UpdateTripleResponseTypedDict",
 ]
@@ -236,6 +261,8 @@ _dynamic_imports: dict[str, str] = {
     "DeleteEntityRequestTypedDict": ".deleteentityop",
     "DeleteGraphRequest": ".deletegraphop",
     "DeleteGraphRequestTypedDict": ".deletegraphop",
+    "DeleteIndexRequest": ".deleteindexop",
+    "DeleteIndexRequestTypedDict": ".deleteindexop",
     "DeleteTriplesRequest": ".deletetriplesop",
     "DeleteTriplesRequestTypedDict": ".deletetriplesop",
     "DeleteTriplesResponse": ".deletetriplesresponse",
@@ -261,6 +288,8 @@ _dynamic_imports: dict[str, str] = {
     "GetEntityRequestTypedDict": ".getentityop",
     "GetGraphRequest": ".getgraphop",
     "GetGraphRequestTypedDict": ".getgraphop",
+    "GetIndexRequest": ".getindexop",
+    "GetIndexRequestTypedDict": ".getindexop",
     "Graph": ".graph",
     "GraphMetadata": ".graph",
     "GraphMetadataTypedDict": ".graph",
@@ -273,6 +302,10 @@ _dynamic_imports: dict[str, str] = {
     "GraphResponseTypedDict": ".graphresponse",
     "GraphsListResponse": ".graphslistresponse",
     "GraphsListResponseTypedDict": ".graphslistresponse",
+    "GraphUpdate": ".graphupdate",
+    "GraphUpdateMetadata": ".graphupdate",
+    "GraphUpdateMetadataTypedDict": ".graphupdate",
+    "GraphUpdateTypedDict": ".graphupdate",
     "Index": ".index",
     "IndexTypedDict": ".index",
     "IndexCreate": ".indexcreate",
@@ -281,6 +314,8 @@ _dynamic_imports: dict[str, str] = {
     "IndexesListResponseTypedDict": ".indexeslistresponse",
     "IndexResponse": ".indexresponse",
     "IndexResponseTypedDict": ".indexresponse",
+    "IndexUpdate": ".indexupdate",
+    "IndexUpdateTypedDict": ".indexupdate",
     "ListEntitiesRequest": ".listentitiesop",
     "ListEntitiesRequestTypedDict": ".listentitiesop",
     "ListEntitiesResponse": ".listentitiesop",
@@ -337,6 +372,10 @@ _dynamic_imports: dict[str, str] = {
     "TripleUpdateTypedDict": ".tripleupdate",
     "UpdateEntityRequest": ".updateentityop",
     "UpdateEntityRequestTypedDict": ".updateentityop",
+    "UpdateGraphRequest": ".updategraphop",
+    "UpdateGraphRequestTypedDict": ".updategraphop",
+    "UpdateIndexRequest": ".updateindexop",
+    "UpdateIndexRequestTypedDict": ".updateindexop",
     "UpdateTripleResponse": ".updatetripleresponse",
     "UpdateTripleResponseTypedDict": ".updatetripleresponse",
 }
