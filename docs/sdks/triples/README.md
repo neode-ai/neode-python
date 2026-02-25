@@ -67,9 +67,41 @@ with Neode(
 
 Create one or more triples. Entities are automatically created/disambiguated based on subject and object names.
 
-### Example Usage
+### Example Usage: batch
 
-<!-- UsageSnippet language="python" operationID="createTriples" method="post" path="/api/triples" -->
+<!-- UsageSnippet language="python" operationID="createTriples" method="post" path="/api/triples" example="batch" -->
+```python
+from neode import Neode
+import os
+
+
+with Neode(
+    bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
+) as n_client:
+
+    res = n_client.triples.create(triples=[
+        {
+            "subject": "Tesla",
+            "predicate": "headquarters_in",
+            "object": "Austin, Texas",
+            "object_type": "entity",
+            "confidence": 0.9,
+        },
+        {
+            "subject": "Tesla",
+            "predicate": "founded_year",
+            "object": "2003",
+            "confidence": 0.95,
+        },
+    ], index_id="550e8400-e29b-41d4-a716-446655440000")
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: single
+
+<!-- UsageSnippet language="python" operationID="createTriples" method="post" path="/api/triples" example="single" -->
 ```python
 from neode import Neode
 import os

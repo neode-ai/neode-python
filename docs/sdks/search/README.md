@@ -64,9 +64,9 @@ with Neode(
 
 Search across entities, triples, and graphs using natural language. Uses vector embeddings for semantic similarity matching.
 
-### Example Usage
+### Example Usage: basic
 
-<!-- UsageSnippet language="python" operationID="semanticSearch" method="post" path="/api/search" -->
+<!-- UsageSnippet language="python" operationID="semanticSearch" method="post" path="/api/search" example="basic" -->
 ```python
 from neode import Neode
 import os
@@ -80,6 +80,26 @@ with Neode(
         "entities",
         "triples",
     ], limit=20, threshold=0.3)
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: filtered
+
+<!-- UsageSnippet language="python" operationID="semanticSearch" method="post" path="/api/search" example="filtered" -->
+```python
+from neode import Neode
+import os
+
+
+with Neode(
+    bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
+) as n_client:
+
+    res = n_client.search.semantic(query="who founded SpaceX", types=[
+        "triples",
+    ], index_id="550e8400-e29b-41d4-a716-446655440000", limit=10, threshold=0.5)
 
     # Handle response
     print(res)

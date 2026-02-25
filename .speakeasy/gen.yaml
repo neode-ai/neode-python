@@ -27,12 +27,12 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: body
+  versioningStrategy: automatic
   persistentEdits: {}
   tests:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
-  versioningStrategy: automatic
 python:
   version: 0.4.0
   additionalDependencies:

@@ -12,9 +12,9 @@ AI-powered triple generation from natural language
 
 Use OpenAI to extract knowledge triples from natural language. Supports web search for real-time information. Streams responses by default, use format=json for non-streaming.
 
-### Example Usage
+### Example Usage: simple
 
-<!-- UsageSnippet language="python" operationID="generateTriples" method="post" path="/api/triples/generate" -->
+<!-- UsageSnippet language="python" operationID="generateTriples" method="post" path="/api/triples/generate" example="simple" -->
 ```python
 from neode import Neode
 import os
@@ -25,6 +25,24 @@ with Neode(
 ) as n_client:
 
     res = n_client.generation.generate_triples(query="Extract facts about Tesla's Q4 2025 earnings", index_id="550e8400-e29b-41d4-a716-446655440000", format_="json", web_search=True, triple_count=10, news_search=False)
+
+    # Handle response
+    print(res)
+
+```
+### Example Usage: withWebSearch
+
+<!-- UsageSnippet language="python" operationID="generateTriples" method="post" path="/api/triples/generate" example="withWebSearch" -->
+```python
+from neode import Neode
+import os
+
+
+with Neode(
+    bearer_auth=os.getenv("NEODE_BEARER_AUTH", ""),
+) as n_client:
+
+    res = n_client.generation.generate_triples(query="What are the latest developments in quantum computing?", index_id="550e8400-e29b-41d4-a716-446655440000", format_="json", web_search=True, triple_count=15, news_search=False)
 
     # Handle response
     print(res)
