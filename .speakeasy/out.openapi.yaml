@@ -24,24 +24,15 @@ tags:
   - name: "Indexes"
     description: "Organize entities into indexes"
 paths:
-  /api/triples:
+  "/api/triples":
     get:
       tags:
         - "Triples"
       summary: "Query triples"
       description: "Retrieve triples with various filtering options. Use this to query your knowledge graph."
       operationId: "queryTriples"
-      x-speakeasy-pagination:
-        type: "offsetLimit"
-        inputs:
-          - name: "offset"
-            in: "parameters"
-            type: "offset"
-          - name: "limit"
-            in: "parameters"
-            type: "limit"
-        outputs:
-          results: "$.data"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "query"
       parameters:
         - name: "search"
           in: "query"
@@ -104,14 +95,10 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TriplesListResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: query
+            "application/json":
+              schema: {"$ref": "#/components/schemas/TriplesListResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
     post:
       tags:
         - "Triples"
@@ -121,48 +108,24 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TripleBatchCreate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/TripleBatchCreate"}
             examples:
-              single:
+              "single":
                 summary: "Single triple"
-                value:
-                  triples:
-                    - subject: "Elon Musk"
-                      predicate: "founded"
-                      object: "SpaceX"
-                      object_type: "entity"
-                      confidence: 0.95
-                      source: "https://wikipedia.org/wiki/SpaceX"
-                  index_id: "550e8400-e29b-41d4-a716-446655440000"
-              batch:
+                value: {"triples": [{"subject": "Elon Musk", "predicate": "founded", "object": "SpaceX", "object_type": "entity", "confidence": 0.95, "source": "https://wikipedia.org/wiki/SpaceX"}], "index_id": "550e8400-e29b-41d4-a716-446655440000"}
+              "batch":
                 summary: "Multiple triples"
-                value:
-                  triples:
-                    - subject: "Tesla"
-                      predicate: "headquarters_in"
-                      object: "Austin, Texas"
-                      object_type: "entity"
-                      confidence: 0.9
-                    - subject: "Tesla"
-                      predicate: "founded_year"
-                      object: "2003"
-                      object_type: "literal"
-                      confidence: 0.95
-                  index_id: "550e8400-e29b-41d4-a716-446655440000"
+                value: {"triples": [{"subject": "Tesla", "predicate": "headquarters_in", "object": "Austin, Texas", "object_type": "entity", "confidence": 0.9}, {"subject": "Tesla", "predicate": "founded_year", "object": "2003", "object_type": "literal", "confidence": 0.95}], "index_id": "550e8400-e29b-41d4-a716-446655440000"}
       responses:
         "200":
           description: "Successfully created"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateTriplesResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: create
+            "application/json":
+              schema: {"$ref": "#/components/schemas/CreateTriplesResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "create"
     put:
       tags:
         - "Triples"
@@ -172,21 +135,17 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TripleUpdate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/TripleUpdate"}
       responses:
         "200":
           description: "Successfully updated"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UpdateTripleResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: update
+            "application/json":
+              schema: {"$ref": "#/components/schemas/UpdateTripleResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "update"
     delete:
       tags:
         - "Triples"
@@ -214,15 +173,12 @@ paths:
         "200":
           description: "Successfully deleted"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeleteTriplesResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: delete
-  /api/triples/generate:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/DeleteTriplesResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "delete"
+  "/api/triples/generate":
     post:
       tags:
         - "Generation"
@@ -242,58 +198,37 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GenerateRequest"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/GenerateRequest"}
             examples:
-              simple:
+              "simple":
                 summary: "Simple generation"
-                value:
-                  query: "Extract facts about Tesla's Q4 2025 earnings"
-                  index_id: "550e8400-e29b-41d4-a716-446655440000"
-                  triple_count: 10
-              withWebSearch:
+                value: {"query": "Extract facts about Tesla's Q4 2025 earnings", "index_id": "550e8400-e29b-41d4-a716-446655440000", "triple_count": 10}
+              "withWebSearch":
                 summary: "With web search enabled"
-                value:
-                  query: "What are the latest developments in quantum computing?"
-                  index_id: "550e8400-e29b-41d4-a716-446655440000"
-                  web_search: true
-                  triple_count: 15
+                value: {"query": "What are the latest developments in quantum computing?", "index_id": "550e8400-e29b-41d4-a716-446655440000", "web_search": true, "triple_count": 15}
       responses:
         "200":
           description: "Generated triples (streaming or JSON based on format parameter)"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GenerateTriplesResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
+            "application/json":
+              schema: {"$ref": "#/components/schemas/GenerateTriplesResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
         "402":
           description: "Insufficient credits"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/InsufficientCreditsError"
-        "500":
-          $ref: "#/components/responses/InternalError"
-  /api/entities:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/InsufficientCreditsError"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+  "/api/entities":
     get:
       tags:
         - "Entities"
       summary: "List entities"
       description: "Search and list entities. Entities are automatically created when triples are stored."
       operationId: "listEntities"
-      x-speakeasy-pagination:
-        type: "offsetLimit"
-        inputs:
-          - name: "offset"
-            in: "parameters"
-            type: "offset"
-          - name: "limit"
-            in: "parameters"
-            type: "limit"
-        outputs:
-          results: "$.data"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "list"
       parameters:
         - name: "search"
           in: "query"
@@ -329,14 +264,10 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntitiesListResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: list
+            "application/json":
+              schema: {"$ref": "#/components/schemas/EntitiesListResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
     post:
       tags:
         - "Entities"
@@ -346,22 +277,18 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/EntityCreate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/EntityCreate"}
       responses:
         "200":
           description: "Successfully created"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntityResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: create
-  /api/entities/{id}:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/EntityResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "create"
+  "/api/entities/{id}":
     get:
       tags:
         - "Entities"
@@ -379,14 +306,11 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntityResponse"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: get
+            "application/json":
+              schema: {"$ref": "#/components/schemas/EntityResponse"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "get"
     put:
       tags:
         - "Entities"
@@ -403,23 +327,18 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/EntityUpdate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/EntityUpdate"}
       responses:
         "200":
           description: "Successfully updated"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/EntityResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: update
+            "application/json":
+              schema: {"$ref": "#/components/schemas/EntityResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "update"
     delete:
       tags:
         - "Entities"
@@ -437,32 +356,20 @@ paths:
         "200":
           description: "Successfully deleted"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SuccessMessage"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: delete
-  /api/graphs:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/SuccessMessage"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "delete"
+  "/api/graphs":
     get:
       tags:
         - "Graphs"
       summary: "List graphs"
       description: "List all graphs with triple counts"
       operationId: "listGraphs"
-      x-speakeasy-pagination:
-        type: "offsetLimit"
-        inputs:
-          - name: "offset"
-            in: "parameters"
-            type: "offset"
-          - name: "limit"
-            in: "parameters"
-            type: "limit"
-        outputs:
-          results: "$.data"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "listAll"
       parameters:
         - name: "search"
           in: "query"
@@ -486,14 +393,10 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GraphsListResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: listAll
+            "application/json":
+              schema: {"$ref": "#/components/schemas/GraphsListResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
     post:
       tags:
         - "Graphs"
@@ -503,22 +406,18 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GraphCreate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/GraphCreate"}
       responses:
         "200":
           description: "Successfully created"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GraphResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: create
-  /api/graphs/{id}:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/GraphResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "create"
+  "/api/graphs/{id}":
     get:
       tags:
         - "Graphs"
@@ -536,14 +435,11 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GraphResponse"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: get
+            "application/json":
+              schema: {"$ref": "#/components/schemas/GraphResponse"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "get"
     put:
       tags:
         - "Graphs"
@@ -560,23 +456,18 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GraphUpdate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/GraphUpdate"}
       responses:
         "200":
           description: "Successfully updated"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GraphResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: update
+            "application/json":
+              schema: {"$ref": "#/components/schemas/GraphResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "update"
     delete:
       tags:
         - "Graphs"
@@ -600,32 +491,20 @@ paths:
         "200":
           description: "Successfully deleted"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SuccessMessage"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: delete
-  /api/indexes:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/SuccessMessage"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "delete"
+  "/api/indexes":
     get:
       tags:
         - "Indexes"
       summary: "List indexes"
       description: "List all indexes with entity counts"
       operationId: "listIndexes"
-      x-speakeasy-pagination:
-        type: "offsetLimit"
-        inputs:
-          - name: "offset"
-            in: "parameters"
-            type: "offset"
-          - name: "limit"
-            in: "parameters"
-            type: "limit"
-        outputs:
-          results: "$.data"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data"}}
+      x-speakeasy-name-override: "list"
       parameters:
         - name: "search"
           in: "query"
@@ -649,14 +528,10 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/IndexesListResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: list
+            "application/json":
+              schema: {"$ref": "#/components/schemas/IndexesListResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
     post:
       tags:
         - "Indexes"
@@ -666,22 +541,18 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/IndexCreate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/IndexCreate"}
       responses:
         "200":
           description: "Successfully created"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/IndexResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: create
-  /api/indexes/{id}:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/IndexResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "create"
+  "/api/indexes/{id}":
     get:
       tags:
         - "Indexes"
@@ -699,14 +570,11 @@ paths:
         "200":
           description: "Successful response"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/IndexResponse"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: get
+            "application/json":
+              schema: {"$ref": "#/components/schemas/IndexResponse"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "get"
     put:
       tags:
         - "Indexes"
@@ -723,23 +591,18 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/IndexUpdate"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/IndexUpdate"}
       responses:
         "200":
           description: "Successfully updated"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/IndexResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: update
+            "application/json":
+              schema: {"$ref": "#/components/schemas/IndexResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "update"
     delete:
       tags:
         - "Indexes"
@@ -763,32 +626,20 @@ paths:
         "200":
           description: "Successfully deleted"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SuccessMessage"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: delete
-  /api/search:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/SuccessMessage"}
+        "404": {"$ref": "#/components/responses/NotFound"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "delete"
+  "/api/search":
     get:
       tags:
         - "Search"
       summary: "Semantic search (GET)"
       description: "Search across entities, triples, and graphs using natural language. Uses vector embeddings for semantic similarity matching."
       operationId: "semanticSearchGet"
-      x-speakeasy-pagination:
-        type: "offsetLimit"
-        inputs:
-          - name: "offset"
-            in: "parameters"
-            type: "offset"
-          - name: "limit"
-            in: "parameters"
-            type: "limit"
-        outputs:
-          results: "$.data.entities"
+      x-speakeasy-pagination: {"type": "offsetLimit", "inputs": [{"name": "offset", "in": "parameters", "type": "offset"}, {"name": "limit", "in": "parameters", "type": "limit"}], "outputs": {"results": "$.data.entities"}}
+      x-speakeasy-name-override: "semanticGet"
       parameters:
         - name: "q"
           in: "query"
@@ -803,11 +654,8 @@ paths:
           explode: false
           schema:
             type: "array"
-            items:
-              $ref: "#/components/schemas/SearchType"
-            default:
-              - "entities"
-              - "triples"
+            items: {"$ref": "#/components/schemas/SearchType"}
+            default: ["entities", "triples"]
         - name: "index_id"
           in: "query"
           description: "Filter results to a specific index"
@@ -837,14 +685,10 @@ paths:
         "200":
           description: "Search results"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SemanticSearchResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: semanticGet
+            "application/json":
+              schema: {"$ref": "#/components/schemas/SemanticSearchResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
     post:
       tags:
         - "Search"
@@ -854,42 +698,27 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SearchRequest"
+          "application/json":
+            schema: {"$ref": "#/components/schemas/SearchRequest"}
             examples:
-              basic:
+              "basic":
                 summary: "Basic search"
-                value:
-                  query: "electric vehicle companies"
-                  types:
-                    - "entities"
-                    - "triples"
-                  limit: 20
-              filtered:
+                value: {"query": "electric vehicle companies", "types": ["entities", "triples"], "limit": 20}
+              "filtered":
                 summary: "Search with index filter"
-                value:
-                  query: "who founded SpaceX"
-                  types:
-                    - "triples"
-                  index_id: "550e8400-e29b-41d4-a716-446655440000"
-                  limit: 10
-                  threshold: 0.5
+                value: {"query": "who founded SpaceX", "types": ["triples"], "index_id": "550e8400-e29b-41d4-a716-446655440000", "limit": 10, "threshold": 0.5}
       responses:
         "200":
           description: "Search results"
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SemanticSearchResponse"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "500":
-          $ref: "#/components/responses/InternalError"
-      x-speakeasy-name-override: semantic
+            "application/json":
+              schema: {"$ref": "#/components/schemas/SemanticSearchResponse"}
+        "400": {"$ref": "#/components/responses/BadRequest"}
+        "500": {"$ref": "#/components/responses/InternalError"}
+      x-speakeasy-name-override: "semantic"
 components:
   schemas:
-    Triple:
+    "Triple":
       type: "object"
       description: "A knowledge triple representing a fact as subject-predicate-object"
       required:
@@ -898,616 +727,605 @@ components:
         - "object"
         - "object_type"
       properties:
-        id:
+        "id":
           type: "string"
           format: "uuid"
           description: "Unique identifier"
-        subject:
+        "subject":
           type: "string"
           description: "The subject entity (e.g., 'Elon Musk', 'Tesla')"
-        predicate:
+        "predicate":
           type: "string"
           description: "The relationship type (e.g., 'founded', 'located_in', 'born_on')"
-        object:
+        "object":
           type: "string"
           description: "The object value or entity (e.g., 'SpaceX', '2003', 'Austin, Texas')"
-        object_type:
+        "object_type":
           type: "string"
           enum:
             - "literal"
             - "entity"
           description: "'literal' for values (dates, numbers, text), 'entity' for references to other entities"
-        confidence:
+        "confidence":
           type: "number"
           minimum: 0
           maximum: 1
           description: "Confidence score (0-1) indicating reliability"
-        source:
+        "source":
           type: "string"
           format: "uri"
           description: "Source URL or reference for this fact"
-        graph_id:
+        "graph_id":
           type: "string"
           format: "uuid"
           description: "Graph this triple belongs to"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
           description: "Index for entity disambiguation"
-        subject_entity_id:
+        "subject_entity_id":
           type: "string"
           format: "uuid"
           description: "Auto-resolved entity ID for subject"
-        object_entity_id:
+        "object_entity_id":
           type: "string"
           format: "uuid"
           description: "Auto-resolved entity ID for object (when object_type is 'entity')"
-        created_at:
+        "created_at":
           type: "string"
           format: "date-time"
-    TripleCreate:
+    "TripleCreate":
       type: "object"
       required:
         - "subject"
         - "predicate"
         - "object"
       properties:
-        subject:
+        "subject":
           type: "string"
-        predicate:
+        "predicate":
           type: "string"
-        object:
+        "object":
           type: "string"
-        object_type:
+        "object_type":
           type: "string"
           enum:
             - "literal"
             - "entity"
           default: "literal"
-        confidence:
+        "confidence":
           type: "number"
           minimum: 0
           maximum: 1
-        source:
+        "source":
           type: "string"
           format: "uri"
-        graph_id:
+        "graph_id":
           type: "string"
           format: "uuid"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-    TripleBatchCreate:
+    "TripleBatchCreate":
       type: "object"
       required:
         - "triples"
         - "index_id"
       properties:
-        triples:
+        "triples":
           type: "array"
-          items:
-            $ref: "#/components/schemas/TripleCreate"
-        graph_id:
+          items: {"$ref": "#/components/schemas/TripleCreate"}
+        "graph_id":
           type: "string"
           format: "uuid"
           description: "Default graph for all triples"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
           description: "Index for entity disambiguation (required)"
-        source:
+        "source":
           type: "string"
           description: "Default source for all triples"
-    TripleUpdate:
+    "TripleUpdate":
       type: "object"
       required:
         - "id"
       properties:
-        id:
+        "id":
           type: "string"
           format: "uuid"
-        subject:
+        "subject":
           type: "string"
-        predicate:
+        "predicate":
           type: "string"
-        object:
+        "object":
           type: "string"
-        confidence:
+        "confidence":
           type: "number"
-        source:
+        "source":
           type: "string"
-        graph_id:
+        "graph_id":
           type: "string"
           format: "uuid"
-    CreateTriplesResponse:
+    "CreateTriplesResponse":
       type: "object"
       description: "Response from creating triples"
       properties:
-        success:
+        "success":
           type: "boolean"
-        message:
+        "message":
           type: "string"
-        data:
+        "data":
           type: "array"
-          items:
-            $ref: "#/components/schemas/Triple"
-        inserted_count:
+          items: {"$ref": "#/components/schemas/Triple"}
+        "inserted_count":
           type: "integer"
-    Entity:
+    "Entity":
       type: "object"
       description: "An entity representing a subject or object in the knowledge graph"
       properties:
-        id:
+        "id":
           type: "string"
           format: "uuid"
-        name:
+        "name":
           type: "string"
           description: "Canonical name of the entity"
-        description:
+        "description":
           type: "string"
-        avatar_url:
+        "avatar_url":
           type: "string"
           format: "uri"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-        index_name:
+        "index_name":
           type: "string"
-        created_at:
-          type: "string"
-          format: "date-time"
-        updated_at:
+        "created_at":
           type: "string"
           format: "date-time"
-    EntityCreate:
+        "updated_at":
+          type: "string"
+          format: "date-time"
+    "EntityCreate":
       type: "object"
       required:
         - "name"
       properties:
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-    EntityUpdate:
+    "EntityUpdate":
       type: "object"
       properties:
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        avatar_url:
+        "avatar_url":
           type: "string"
           format: "uri"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-        parent_entity_id:
+        "parent_entity_id":
           type:
             - "string"
             - "null"
           format: "uuid"
           description: "Parent entity ID for hierarchical organization"
-    Graph:
+    "Graph":
       type: "object"
       description: "A graph organizing related triples"
       properties:
-        id:
+        "id":
           type: "string"
           format: "uuid"
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-        metadata:
+        "metadata":
           type: "object"
-        triple_count:
+        "triple_count":
           type: "integer"
-        created_at:
+        "created_at":
           type: "string"
           format: "date-time"
-        updated_at:
+        "updated_at":
           type: "string"
           format: "date-time"
-    GraphCreate:
+    "GraphCreate":
       type: "object"
       required:
         - "name"
       properties:
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-        metadata:
+        "metadata":
           type: "object"
-    GraphUpdate:
+    "GraphUpdate":
       type: "object"
       description: "Fields to update on a graph"
       properties:
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
-        metadata:
+        "metadata":
           type: "object"
-    Index:
+    "Index":
       type: "object"
       description: "An index for organizing and disambiguating entities"
       properties:
-        id:
+        "id":
           type: "string"
           format: "uuid"
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        is_public:
+        "is_public":
           type: "boolean"
-        preferred_predicates:
+        "preferred_predicates":
           type: "array"
           items:
             type: "string"
           description: "Preferred predicate types for this index"
-        rules:
+        "rules":
           type: "string"
           description: "Custom rules or instructions for triple generation in this index"
-        item_count:
+        "item_count":
           type: "integer"
           description: "Number of entities in this index"
-        created_at:
+        "created_at":
           type: "string"
           format: "date-time"
-        updated_at:
+        "updated_at":
           type: "string"
           format: "date-time"
-    IndexCreate:
+    "IndexCreate":
       type: "object"
       required:
         - "name"
       properties:
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-    IndexUpdate:
+    "IndexUpdate":
       type: "object"
       description: "Fields to update on an index"
       properties:
-        name:
+        "name":
           type: "string"
-        description:
+        "description":
           type: "string"
-        is_public:
+        "is_public":
           type: "boolean"
-        preferred_predicates:
+        "preferred_predicates":
           type: "array"
           items:
             type: "string"
           description: "Preferred predicate types for this index"
-        rules:
+        "rules":
           type: "string"
           description: "Custom rules or instructions for triple generation in this index"
-    GenerateRequest:
+    "GenerateRequest":
       type: "object"
       required:
         - "query"
         - "index_id"
       description: "Request to generate triples using AI (OpenAI)"
       properties:
-        query:
+        "query":
           type: "string"
           description: "Natural language description of what to extract triples about"
-        graph_id:
+        "graph_id":
           type: "string"
           format: "uuid"
           description: "Graph to store generated triples in"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
           description: "Index for entity disambiguation (required)"
-        web_search:
+        "web_search":
           type: "boolean"
           default: true
           description: "Enable web search for real-time information"
-        triple_count:
+        "triple_count":
           type: "integer"
           default: 10
           minimum: 1
           maximum: 50
           description: "Target number of triples to generate (approximate)"
-        predicates:
+        "predicates":
           type: "array"
           items:
             type: "string"
           description: "Restrict to specific predicate types"
-        subject_entity:
+        "subject_entity":
           type: "string"
           description: "Constrain all generated triples to use this exact subject"
-        rules:
+        "rules":
           type: "string"
           description: "Custom rules or instructions for the AI generation"
-        news_search:
+        "news_search":
           type: "boolean"
           default: false
           description: "Enable news-specific search for recent events"
-    SearchRequest:
+        "create_graph":
+          type: "boolean"
+          default: true
+          description: "Auto-create a graph for generated triples when no graph_id is provided. When true (default) and no graph_id is given, a new graph is created and all generated triples are associated with it."
+    "SearchRequest":
       type: "object"
       required:
         - "query"
       description: "Request for semantic search across the knowledge graph"
       properties:
-        query:
+        "query":
           type: "string"
           description: "Natural language search query"
-        types:
+        "types":
           type: "array"
-          items:
-            $ref: "#/components/schemas/SearchType"
-          default:
-            - "entities"
-            - "triples"
+          items: {"$ref": "#/components/schemas/SearchType"}
+          default: ["entities", "triples"]
           description: "Types of objects to search"
-        index_id:
+        "index_id":
           type: "string"
           format: "uuid"
           description: "Filter results to a specific index"
-        limit:
+        "limit":
           type: "integer"
           default: 20
           minimum: 1
           maximum: 100
           description: "Maximum results per type"
-        threshold:
+        "threshold":
           type: "number"
           default: 0.3
           minimum: 0
           maximum: 1
           description: "Minimum similarity score (0-1)"
-    Error:
+    "Error":
       type: "object"
       properties:
-        success:
+        "success":
           type: "boolean"
           example: false
-        error:
+        "error":
           type: "string"
-        details:
+        "details":
           type: "string"
-    SuccessMessage:
+    "SuccessMessage":
       type: "object"
       description: "A simple success response with a message"
       properties:
-        success:
+        "success":
           type: "boolean"
-        message:
+        "message":
           type: "string"
-    SearchType:
+    "SearchType":
       type: "string"
       enum:
         - "entities"
         - "triples"
         - "graphs"
       description: "Type of object to search for"
-    TriplesListResponse:
+    "TriplesListResponse":
       type: "object"
       description: "Response containing a list of triples"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
+        "data":
           type: "array"
-          items:
-            $ref: "#/components/schemas/Triple"
-        count:
+          items: {"$ref": "#/components/schemas/Triple"}
+        "count":
           type: "integer"
-    UpdateTripleResponse:
+    "UpdateTripleResponse":
       type: "object"
       description: "Response from updating a triple"
       properties:
-        success:
+        "success":
           type: "boolean"
-        message:
+        "message":
           type: "string"
-        data:
-          $ref: "#/components/schemas/Triple"
-    DeleteTriplesResponse:
+        "data": {"$ref": "#/components/schemas/Triple"}
+    "DeleteTriplesResponse":
       type: "object"
       description: "Response from deleting triples"
       properties:
-        success:
+        "success":
           type: "boolean"
-        message:
+        "message":
           type: "string"
-        deleted_count:
+        "deleted_count":
           type: "integer"
-    GenerateTriplesResponse:
+    "GenerateTriplesResponse":
       type: "object"
       description: "Response from generating triples with AI"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
+        "data":
           type: "array"
-          items:
-            $ref: "#/components/schemas/Triple"
-        count:
+          items: {"$ref": "#/components/schemas/Triple"}
+        "count":
           type: "integer"
-        provider:
+        "graph_id":
+          type: "string"
+          format: "uuid"
+          description: "Graph ID the triples were stored in (auto-created or provided)"
+        "provider":
           type: "string"
           description: "AI provider used (openai)"
-        credits_used:
+        "credits_used":
           type: "integer"
           description: "Credits deducted for generation"
-        balance_remaining:
+        "balance_remaining":
           type: "integer"
           description: "Remaining credit balance"
-        auto_topup_triggered:
+        "auto_topup_triggered":
           type: "boolean"
           description: "Whether auto top-up was triggered after this generation"
-    InsufficientCreditsError:
+    "InsufficientCreditsError":
       type: "object"
       description: "Error returned when user has insufficient credits"
       properties:
-        success:
+        "success":
           type: "boolean"
           example: false
-        error:
+        "error":
           type: "string"
-        balance_cents:
+        "balance_cents":
           type: "integer"
-        required_cents:
+        "required_cents":
           type: "integer"
-        buy_credits_url:
+        "buy_credits_url":
           type: "string"
-    EntitiesListResponse:
+    "EntitiesListResponse":
       type: "object"
       description: "Response containing a list of entities"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
+        "data":
           type: "array"
-          items:
-            $ref: "#/components/schemas/Entity"
-        count:
+          items: {"$ref": "#/components/schemas/Entity"}
+        "count":
           type: "integer"
-    EntityResponse:
+    "EntityResponse":
       type: "object"
       description: "Response containing a single entity"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
-          $ref: "#/components/schemas/Entity"
-    GraphsListResponse:
+        "data": {"$ref": "#/components/schemas/Entity"}
+    "GraphsListResponse":
       type: "object"
       description: "Response containing a list of graphs"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
+        "data":
           type: "array"
-          items:
-            $ref: "#/components/schemas/Graph"
-        count:
+          items: {"$ref": "#/components/schemas/Graph"}
+        "count":
           type: "integer"
-    GraphResponse:
+    "GraphResponse":
       type: "object"
       description: "Response containing a single graph"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
-          $ref: "#/components/schemas/Graph"
-    IndexesListResponse:
+        "data": {"$ref": "#/components/schemas/Graph"}
+    "IndexesListResponse":
       type: "object"
       description: "Response containing a list of indexes"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
+        "data":
           type: "array"
-          items:
-            $ref: "#/components/schemas/Index"
-        count:
+          items: {"$ref": "#/components/schemas/Index"}
+        "count":
           type: "integer"
-    IndexResponse:
+    "IndexResponse":
       type: "object"
       description: "Response containing a single index"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
-          $ref: "#/components/schemas/Index"
-    SemanticSearchData:
+        "data": {"$ref": "#/components/schemas/Index"}
+    "SemanticSearchData":
       type: "object"
       description: "Search results data containing entities, triples, and graphs"
       properties:
-        entities:
+        "entities":
           type: "array"
           items:
             allOf:
-              - $ref: "#/components/schemas/Entity"
+              - {"$ref": "#/components/schemas/Entity"}
               - type: "object"
                 properties:
-                  similarity:
+                  "similarity":
                     type: "number"
                     description: "Similarity score (0-1)"
-                  triple_count:
+                  "triple_count":
                     type: "integer"
                     description: "Number of related triples"
-        triples:
+        "triples":
           type: "array"
           items:
             allOf:
-              - $ref: "#/components/schemas/Triple"
+              - {"$ref": "#/components/schemas/Triple"}
               - type: "object"
                 properties:
-                  similarity:
+                  "similarity":
                     type: "number"
                     description: "Similarity score (0-1)"
-        graphs:
+        "graphs":
           type: "array"
           items:
             allOf:
-              - $ref: "#/components/schemas/Graph"
+              - {"$ref": "#/components/schemas/Graph"}
               - type: "object"
                 properties:
-                  similarity:
+                  "similarity":
                     type: "number"
                     description: "Similarity score (0-1)"
-    SemanticSearchCount:
+    "SemanticSearchCount":
       type: "object"
       description: "Count of search results by type"
       properties:
-        entities:
+        "entities":
           type: "integer"
-        triples:
+        "triples":
           type: "integer"
-        graphs:
+        "graphs":
           type: "integer"
-    SemanticSearchResponse:
+    "SemanticSearchResponse":
       type: "object"
       description: "Response from semantic search"
       properties:
-        success:
+        "success":
           type: "boolean"
-        data:
-          $ref: "#/components/schemas/SemanticSearchData"
-        count:
-          $ref: "#/components/schemas/SemanticSearchCount"
+        "data": {"$ref": "#/components/schemas/SemanticSearchData"}
+        "count": {"$ref": "#/components/schemas/SemanticSearchCount"}
   responses:
-    BadRequest:
+    "BadRequest":
       description: "Bad request"
       content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Error"
-    NotFound:
+        "application/json":
+          schema: {"$ref": "#/components/schemas/Error"}
+    "NotFound":
       description: "Resource not found"
       content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Error"
-    InternalError:
+        "application/json":
+          schema: {"$ref": "#/components/schemas/Error"}
+    "InternalError":
       description: "Internal server error"
       content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Error"
+        "application/json":
+          schema: {"$ref": "#/components/schemas/Error"}
   securitySchemes:
-    BearerAuth:
+    "BearerAuth":
       type: "http"
       scheme: "bearer"
       description: "API key for authentication"

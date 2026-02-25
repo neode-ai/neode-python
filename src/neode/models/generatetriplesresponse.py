@@ -14,6 +14,8 @@ class GenerateTriplesResponseTypedDict(TypedDict):
     success: NotRequired[bool]
     data: NotRequired[List[TripleTypedDict]]
     count: NotRequired[int]
+    graph_id: NotRequired[str]
+    r"""Graph ID the triples were stored in (auto-created or provided)"""
     provider: NotRequired[str]
     r"""AI provider used (openai)"""
     credits_used: NotRequired[int]
@@ -32,6 +34,9 @@ class GenerateTriplesResponse(BaseModel):
     data: Optional[List[Triple]] = None
 
     count: Optional[int] = None
+
+    graph_id: Optional[str] = None
+    r"""Graph ID the triples were stored in (auto-created or provided)"""
 
     provider: Optional[str] = None
     r"""AI provider used (openai)"""
@@ -52,6 +57,7 @@ class GenerateTriplesResponse(BaseModel):
                 "success",
                 "data",
                 "count",
+                "graph_id",
                 "provider",
                 "credits_used",
                 "balance_remaining",

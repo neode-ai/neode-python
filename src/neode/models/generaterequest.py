@@ -28,6 +28,8 @@ class GenerateRequestTypedDict(TypedDict):
     r"""Custom rules or instructions for the AI generation"""
     news_search: NotRequired[bool]
     r"""Enable news-specific search for recent events"""
+    create_graph: NotRequired[bool]
+    r"""Auto-create a graph for generated triples when no graph_id is provided. When true (default) and no graph_id is given, a new graph is created and all generated triples are associated with it."""
 
 
 class GenerateRequest(BaseModel):
@@ -60,6 +62,9 @@ class GenerateRequest(BaseModel):
     news_search: Optional[bool] = False
     r"""Enable news-specific search for recent events"""
 
+    create_graph: Optional[bool] = True
+    r"""Auto-create a graph for generated triples when no graph_id is provided. When true (default) and no graph_id is given, a new graph is created and all generated triples are associated with it."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -71,6 +76,7 @@ class GenerateRequest(BaseModel):
                 "subject_entity",
                 "rules",
                 "news_search",
+                "create_graph",
             ]
         )
         serialized = handler(self)

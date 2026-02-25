@@ -1278,6 +1278,11 @@
             "type": "boolean",
             "default": false,
             "description": "Enable news-specific search for recent events"
+          },
+          "create_graph": {
+            "type": "boolean",
+            "default": true,
+            "description": "Auto-create a graph for generated triples when no graph_id is provided. When true (default) and no graph_id is given, a new graph is created and all generated triples are associated with it."
           }
         }
       },
@@ -1378,6 +1383,7 @@
             "items": { "$ref": "#/components/schemas/Triple" }
           },
           "count": { "type": "integer" },
+          "graph_id": { "type": "string", "format": "uuid", "description": "Graph ID the triples were stored in (auto-created or provided)" },
           "provider": { "type": "string", "description": "AI provider used (openai)" },
           "credits_used": { "type": "integer", "description": "Credits deducted for generation" },
           "balance_remaining": { "type": "integer", "description": "Remaining credit balance" },

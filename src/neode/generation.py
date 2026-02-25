@@ -25,6 +25,7 @@ class Generation(BaseSDK):
         subject_entity: Optional[str] = None,
         rules: Optional[str] = None,
         news_search: Optional[bool] = False,
+        create_graph: Optional[bool] = True,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -44,6 +45,7 @@ class Generation(BaseSDK):
         :param subject_entity: Constrain all generated triples to use this exact subject
         :param rules: Custom rules or instructions for the AI generation
         :param news_search: Enable news-specific search for recent events
+        :param create_graph: Auto-create a graph for generated triples when no graph_id is provided. When true (default) and no graph_id is given, a new graph is created and all generated triples are associated with it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -71,6 +73,7 @@ class Generation(BaseSDK):
                 subject_entity=subject_entity,
                 rules=rules,
                 news_search=news_search,
+                create_graph=create_graph,
             ),
         )
 
@@ -157,6 +160,7 @@ class Generation(BaseSDK):
         subject_entity: Optional[str] = None,
         rules: Optional[str] = None,
         news_search: Optional[bool] = False,
+        create_graph: Optional[bool] = True,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -176,6 +180,7 @@ class Generation(BaseSDK):
         :param subject_entity: Constrain all generated triples to use this exact subject
         :param rules: Custom rules or instructions for the AI generation
         :param news_search: Enable news-specific search for recent events
+        :param create_graph: Auto-create a graph for generated triples when no graph_id is provided. When true (default) and no graph_id is given, a new graph is created and all generated triples are associated with it.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -203,6 +208,7 @@ class Generation(BaseSDK):
                 subject_entity=subject_entity,
                 rules=rules,
                 news_search=news_search,
+                create_graph=create_graph,
             ),
         )
 

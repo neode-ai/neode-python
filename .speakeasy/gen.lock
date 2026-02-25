@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 3830c7a6-2d03-49bf-9209-f49570712039
 management:
-  docChecksum: 299960e0d6c06b7e930b78905d3f6da4
+  docChecksum: 9d689679cdd7d3a7c5729e291d548100
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 0.4.0
-  configChecksum: fea83b15accaeb485c5d6f090e120713
+  releaseVersion: 0.4.1
+  configChecksum: 5d01cb9d58821ff9ae2b6eca3d8ccb31
   published: true
 persistentEdits:
-  generation_id: 4a4ae3f1-7b12-4d16-b1a8-9ef9d8e6deb8
-  pristine_commit_hash: 7eacdbfa9e2587ef5a4d95997ec212b3621367b2
-  pristine_tree_hash: 4f650e6464b3fa73d3ff56b533a5bdca08b13d7f
+  generation_id: 5c9c8bc9-e1c0-446b-b6c2-ba4fed6b355f
+  pristine_commit_hash: 1c9901210386e7cce300fc3e185c2dddb13baf9b
+  pristine_tree_hash: 339daa5c562ce6b9a4e2a7715ff3aa8b6613e2bc
 features:
   python:
     additionalDependencies: 1.0.0
@@ -117,16 +117,16 @@ trackedFiles:
     pristine_git_object: d23e156459bb3d95c9bda8c63cf8aa1d95b3b577
   docs/models/generaterequest.md:
     id: 4f9a3b46a0a6
-    last_write_checksum: sha1:5c20abe92c4b1977616bb7c6b1c2aeba609041ab
-    pristine_git_object: 26ab2e3d0f9c32342c35ec128d4fc04b28bf235b
+    last_write_checksum: sha1:8622c68bdad1c3e6f9bdbcd6d19c80f33c4c1233
+    pristine_git_object: 686a4661a620081ab34bd96c9001e83965f42ecd
   docs/models/generatetriplesrequest.md:
     id: 545a4b7e658c
     last_write_checksum: sha1:53820c5556687e067cd1cf1464a5397956691bfc
     pristine_git_object: a9755cf73cccdf6dccf7ee9622081fd3b970bc44
   docs/models/generatetriplesresponse.md:
     id: f708af4515ea
-    last_write_checksum: sha1:fa8106ae0d755998469cc2b1f8e706e1734f8788
-    pristine_git_object: 4ea502ce19fc48167bf6bc45bbba1633ef1d59f6
+    last_write_checksum: sha1:3a6220ea2b1d8a5f579b2b86db12a12e6990b9a2
+    pristine_git_object: a2c699f69972f8224efe906170132fe8db76530b
   docs/models/getentityrequest.md:
     id: 0e22ee9eb2b5
     last_write_checksum: sha1:bb1bc0087b17408810c1d4a95abc007d7b0a2167
@@ -333,8 +333,8 @@ trackedFiles:
     pristine_git_object: 8d937a92e562298c8abba77994efef42e245ffd2
   docs/sdks/generation/README.md:
     id: 46b1ec4dc772
-    last_write_checksum: sha1:4aec25a6f3341d1bb7b358f13d29e32196a1bee3
-    pristine_git_object: 3ad3270e4ff9f99bbdc5f87899ed752fb2191cd5
+    last_write_checksum: sha1:2bf372ed57c676397afee7b3fae45959cfe49db9
+    pristine_git_object: 3a469099c2c37e6beaaca63f7b8f45a7a664f1cf
   docs/sdks/graphs/README.md:
     id: f2f7c462abbe
     last_write_checksum: sha1:df10cd8ea2d4fde5610263bd14d988c5f7054e19
@@ -345,11 +345,11 @@ trackedFiles:
     pristine_git_object: dbaf3ce28feca1517d704ed5b2b96cf003e9d8b9
   docs/sdks/search/README.md:
     id: 5c534716244c
-    last_write_checksum: sha1:50c423464cdea7045aa7e9be639bf1b5ac75f48f
+    last_write_checksum: sha1:d792a3b16001127c6c771225e79a1eae2b4713e2
     pristine_git_object: a99d090fb863c192a18d0011b13c8b4bd9af779b
   docs/sdks/triples/README.md:
     id: b030e5a0a33b
-    last_write_checksum: sha1:0f82541044a8aada3c9c70f7d9bfa7601d77571f
+    last_write_checksum: sha1:cf7e57beb3fa3aace1f7f5211479db868030a40d
     pristine_git_object: 58d910d1e221ce4ad15157d9866b11eff22009f7
   py.typed:
     id: 258c3ed47ae4
@@ -357,12 +357,12 @@ trackedFiles:
     pristine_git_object: 3e38f1a929f7d6b1d6de74604aa87e3d8f010544
   pylintrc:
     id: 7ce8b9f946e6
-    last_write_checksum: sha1:6ce90751b1c977d2618e5cbb66aa92bfe7435a48
+    last_write_checksum: sha1:fe86c083e576c2ba3214f56e90a4facd12f40420
     pristine_git_object: 39bf75e004ae72eeae3cbef0f49cf5749f08690f
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:7ce45915324b5647cb28f4a2ec7f18f1b4a53fb0
-    pristine_git_object: 1efe3e61bb5d91b044dc56baf2a89a33ebb2787d
+    last_write_checksum: sha1:311dfe439caac01e9a54d8057779c51b1a4d1b32
+    pristine_git_object: b889697f1a5da502e87bfe9b611b4d15efe6785f
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -385,8 +385,8 @@ trackedFiles:
     pristine_git_object: e6d42f004e4abf711bbaf58dee511666b81fae3d
   src/neode/_version.py:
     id: 43196da9377f
-    last_write_checksum: sha1:1cedcd5bb28ea5d2aba0b2c9134b2a5a3ed51da1
-    pristine_git_object: 61f420ba5900f54551abb0cf8d07baa6b81ff007
+    last_write_checksum: sha1:fe3880a34d0f7add480f4ac7591e3cd59e1152ed
+    pristine_git_object: b64721db1a3ff991e8160fa42cac1b8509a0486b
   src/neode/basesdk.py:
     id: ace29dab4ecb
     last_write_checksum: sha1:fa73d17d6da5ba9e4d70d8167ed0148a7c170ed6
@@ -397,7 +397,7 @@ trackedFiles:
     pristine_git_object: d8e26e1a233a81b0d06a56b60e2238b3999f5360
   src/neode/errors/__init__.py:
     id: 57c03bc60b47
-    last_write_checksum: sha1:102a36c43da5e773a33788f5629771ff4c2e29d4
+    last_write_checksum: sha1:855a94256daff30b3c50bbcf717b893eb7fe79e0
     pristine_git_object: 521f731d409f59376f71fa2e223e9672c61935b5
   src/neode/errors/error.py:
     id: 3f4cbc87e51a
@@ -425,8 +425,8 @@ trackedFiles:
     pristine_git_object: 688ec2a050689f505fc2b8fd073132649cc8d72f
   src/neode/generation.py:
     id: 0bd730aa37b7
-    last_write_checksum: sha1:b63554f4ef5fe29ff6ea5e1f0e88699938269fdf
-    pristine_git_object: ddfa83431dafef103882a25229972a6f64a8d1b0
+    last_write_checksum: sha1:c1817418155d80f387de4789ed12704ed0122b92
+    pristine_git_object: 97ec955fdd7fa0b95b21494bdda6131566e78470
   src/neode/graphs.py:
     id: 3aa9eb6cdc1a
     last_write_checksum: sha1:94895844cf42dcddecb9e0ff431ab12b0a80cf8b
@@ -441,7 +441,7 @@ trackedFiles:
     pristine_git_object: 9e069dda76a9e2ac3a0ac8e085628d4d197dfe2a
   src/neode/models/__init__.py:
     id: a4877aba650c
-    last_write_checksum: sha1:213ee248a6fb5e8c378042f87f6124524a6386d3
+    last_write_checksum: sha1:ddfb62134cd3fd74d900be200b3ca4004793cc44
     pristine_git_object: 3b9ba9520dfae1c04b774b2bb5fd76eda4da23bd
   src/neode/models/createtriplesresponse.py:
     id: 31e806eac8cd
@@ -489,16 +489,16 @@ trackedFiles:
     pristine_git_object: 3da9e20cd5c13333e42e58aa1c1acaa55f02b3cd
   src/neode/models/generaterequest.py:
     id: 458a0e3bebb3
-    last_write_checksum: sha1:e4ec38261ce86ef62492a4b3a5307a21aadff6aa
-    pristine_git_object: 33c0786d5af9b2ecde04d7df8c61d7b6907e31fc
+    last_write_checksum: sha1:faf12162c2900d668e1930a6412f37c64b910f8c
+    pristine_git_object: 832c34dfd70557b6d47ee4dc372b0ae1bee1b169
   src/neode/models/generatetriplesop.py:
     id: 0f79b6c6e92a
     last_write_checksum: sha1:9901f6d696b7eb219bb4f8a7c8adff73804f3334
     pristine_git_object: b4df8129246bc6beaf234ec5359470d6e3895f03
   src/neode/models/generatetriplesresponse.py:
     id: 37a19d3ca10b
-    last_write_checksum: sha1:0a63fdcfae7be3cc589440b741f0220f15202ea7
-    pristine_git_object: 0cb5f5dad47314fecfee5dcd11620c6832a940a7
+    last_write_checksum: sha1:1128b896ef28abea3771832ea64b56c82dac7041
+    pristine_git_object: b21de23c21fbaecc2b3f95ea8d7edb52c3b834fc
   src/neode/models/getentityop.py:
     id: d29a1ce59b3e
     last_write_checksum: sha1:2bbdab1908c08fec5bdba7ff09348354d7261ee9
@@ -665,7 +665,7 @@ trackedFiles:
     pristine_git_object: a9a640a1a7048736383f96c67c6290c86bf536ee
   src/neode/utils/__init__.py:
     id: 043a125680d4
-    last_write_checksum: sha1:0f93d821f9cb3e061ea125d881bb6f61166738dd
+    last_write_checksum: sha1:ffaf69e6877a274b08066215f5a31a1b344f5402
     pristine_git_object: f4525b2057c3d54fb3b9eff6248fd172478ce94c
   src/neode/utils/annotations.py:
     id: a5a5cca8f0b6
@@ -675,15 +675,13 @@ trackedFiles:
     id: e2b314d542b2
     last_write_checksum: sha1:c721e4123000e7dc61ec52b28a739439d9e17341
     pristine_git_object: a6c52cd61bbe2d459046c940ce5e8c469f2f0664
-  src/neode/utils/dynamic_imports.py:
-    last_write_checksum: sha1:a1940c63feb8eddfd8026de53384baf5056d5dcc
   src/neode/utils/enums.py:
     id: dc15774c0b51
     last_write_checksum: sha1:bc8c3c1285ae09ba8a094ee5c3d9c7f41fa1284d
     pristine_git_object: 3324e1bc2668c54c4d5f5a1a845675319757a828
   src/neode/utils/eventstreaming.py:
     id: d7abe47d745c
-    last_write_checksum: sha1:ffa870a25a7e4e2015bfd7a467ccd3aa1de97f0e
+    last_write_checksum: sha1:bababae5d54b7efc360db701daa49e18a92c2f3b
     pristine_git_object: 0969899bfc491e5e408d05643525f347ea95e4fc
   src/neode/utils/forms.py:
     id: 01f8ce99fe6b
@@ -711,11 +709,11 @@ trackedFiles:
     pristine_git_object: 1de32b6d26f46590232f398fdba6ce0072f1659c
   src/neode/utils/retries.py:
     id: dc6ccaf10623
-    last_write_checksum: sha1:471372f5c5d1dd5583239c9cf3c75f1b636e5d87
+    last_write_checksum: sha1:5b97ac4f59357d70c2529975d50364c88bcad607
     pristine_git_object: 88a91b10cd2076b4a2c6cff2ac6bfaa5e3c5ad13
   src/neode/utils/security.py:
     id: 6c5630bae06a
-    last_write_checksum: sha1:9601c0a99012135057bfc3cc3deaf344a54f1bd4
+    last_write_checksum: sha1:184ea6d6ff18e94b4f110eee8e8761ee7ea061f0
     pristine_git_object: 891330b71641d59ace98e1cc8a16dd095dc4ece5
   src/neode/utils/serializers.py:
     id: 38ee0247310c
@@ -804,7 +802,7 @@ examples:
         query:
           format: "json"
       requestBody:
-        application/json: {"query": "Extract facts about Tesla's Q4 2025 earnings", "index_id": "550e8400-e29b-41d4-a716-446655440000", "web_search": true, "triple_count": 10, "news_search": false}
+        application/json: {"query": "Extract facts about Tesla's Q4 2025 earnings", "index_id": "550e8400-e29b-41d4-a716-446655440000", "web_search": true, "triple_count": 10, "news_search": false, "create_graph": true}
       responses:
         "200":
           application/json: {}
@@ -819,7 +817,7 @@ examples:
         query:
           format: "json"
       requestBody:
-        application/json: {"query": "What are the latest developments in quantum computing?", "index_id": "550e8400-e29b-41d4-a716-446655440000", "web_search": true, "triple_count": 15, "news_search": false}
+        application/json: {"query": "What are the latest developments in quantum computing?", "index_id": "550e8400-e29b-41d4-a716-446655440000", "web_search": true, "triple_count": 15, "news_search": false, "create_graph": true}
       responses:
         "200":
           application/json: {}
@@ -834,7 +832,7 @@ examples:
         query:
           format: "json"
       requestBody:
-        application/json: {"query": "<value>", "index_id": "e9bb4c55-4a8a-4322-97ce-9a567e1b22fe", "web_search": true, "triple_count": 10, "news_search": false}
+        application/json: {"query": "<value>", "index_id": "e9bb4c55-4a8a-4322-97ce-9a567e1b22fe", "web_search": true, "triple_count": 10, "news_search": false, "create_graph": true}
       responses:
         "200":
           application/json: {}
